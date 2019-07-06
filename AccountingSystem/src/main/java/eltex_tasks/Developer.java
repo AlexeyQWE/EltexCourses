@@ -14,7 +14,7 @@ public class Developer extends User {
 
 	public void speak () {
 
-		System.out.print("Hello! Im a Developer! ");
+		System.out.println("Hello! Im a Developer! ");
 	}
 
 	public int getId () {

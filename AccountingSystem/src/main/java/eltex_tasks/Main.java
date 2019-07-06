@@ -43,7 +43,58 @@ class Main {
 	     }
 	}
 
-	public static void main(String args[])  {
+	public static void wtire (Developer [] dev) {
+
+		try {
+			FileWriter fw = new FileWriter ("files/dev_output_info.txt");
+			for (int i = 0; i < 3; ++i) {
+				fw.write("\nMy Id is " + dev[i].getId());
+				fw.write("\nMy last name is " + dev[i].getFio());
+				fw.write("\nMy phone is " + dev[i].getPhone());
+				fw.write("\nMy email is " + dev[i].getEmail() + "\n"); 		
+			}
+			fw.close();
+		}
+		catch (IOException error) {
+	     	System.err.print(error.getMessage()); 
+	     }
+	}
+
+	public static void wtire (Manager [] mng) {
+
+		try {
+			FileWriter fw = new FileWriter ("files/mng_output_info.txt");
+			for (int i = 0; i < 3; ++i) {
+				fw.write("\nMy Id is " + mng[i].getId());
+				fw.write("\nMy last name is " + mng[i].getFio());
+				fw.write("\nMy phone is " + mng[i].getPhone());
+				fw.write("\nMy email is " + mng[i].getEmail() + "\n");
+			}
+			fw.close();
+		}
+		catch (IOException error) {
+	     	System.err.print(error.getMessage()); 
+	     }
+	}
+
+	public static void wtire (MainManager [] mng) {
+
+		try {
+			FileWriter fw = new FileWriter ("files/main_mng_output_info.txt");
+			for (int i = 0; i < 3; ++i) {
+				fw.write("\nMy Id is " + mng[i].getId());
+				fw.write("\nMy last name is " + mng[i].getFio());
+				fw.write("\nMy phone is " + mng[i].getPhone());
+				fw.write("\nMy email is " + mng[i].getEmail() + "\n");
+			}
+			fw.close();
+		}
+		catch (IOException error) {
+	     	System.err.print(error.getMessage()); 
+	     }
+	}
+
+	public static void main(String args[]) {
 
 		String [] fio =  new String[3];
 		String [] phone = new String[3];
@@ -57,13 +108,12 @@ class Main {
 
 		for (int i = 0; i < 3; ++i) {
 			dev[i] = new Developer(fio[i], phone[i], email[i]);
-			dev[i].speak();
-			System.out.println("My Id is " + dev[i].getId());
+			dev[i].speak();	
 			System.out.println("My last name is " + dev[i].getFio());
-			System.out.println("My phone is " + dev[i].getPhone());
-			System.out.println("My email is " + dev[i].getEmail());
-			System.out.println("I use the language " + dev[i].getLang() + "\n");
+			System.out.println("I use the language " + dev[i].getLang() + "\nCheck my info in dev_output_info.txt\n");
 		}
+
+		wtire(dev);
 
 		System.out.println();
 		dev[0].resetId();
@@ -71,12 +121,11 @@ class Main {
 		for (int i = 0; i < 3; ++i) {
 			mng[i] = new Manager(fio[i], phone[i], email[i]);
 			mng[i].speak();
-			System.out.println("My Id is " + mng[i].getId());
 			System.out.println("My last name is " + mng[i].getFio());
-			System.out.println("My phone is " + mng[i].getPhone());
-			System.out.println("My email is " + mng[i].getEmail());
-			System.out.println("Im selling " + mng[i].getTitle() + ", Cost is " + mng[i].getPrice() + "\n");
+			System.out.println("Im selling " + mng[i].getTitle() + ", Cost is " + mng[i].getPrice() + "\nCheck my info in mng_output_info.txt\n");
 		}
+
+		wtire(mng);
 
 		System.out.println();
 		mng[0].resetId();
@@ -87,11 +136,10 @@ class Main {
 		for (int i = 0; i < 3; ++i) {
 			main_mng[i] = new MainManager(fio[i], phone[i], email[i]);
 			main_mng[i].speak();
-			System.out.println("My Id is " + main_mng[i].getId());
 			System.out.println("My last name is " + main_mng[i].getFio());
-			System.out.println("My phone is " + main_mng[i].getPhone());
-			System.out.println("My email is " + main_mng[i].getEmail());
-			System.out.println("Im selling " + tmp.getTitle() + ", Cost is " + tmp.getPrice() + "\n");
+			System.out.println("Im selling " + tmp.getTitle() + ", Cost is " + tmp.getPrice() + "\nCheck my info in main_mng_output_info.txt\n");
 		}
+
+		wtire(main_mng);
 	}
 }
