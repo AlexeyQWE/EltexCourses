@@ -2,13 +2,15 @@ package eltex_tasks;
 
 public class Manager extends User {
 
-	private Sales [] sales = new Sales[3];
+	protected Sales [] sales = new Sales[3];
 
 	{
 		sales[0] = new telephone();
 		sales[1] = new headphone();
 		sales[2] = new keyboard();
 	}
+
+	Manager () {};
 
 	Manager (String fio, String phone, String email) {
 
