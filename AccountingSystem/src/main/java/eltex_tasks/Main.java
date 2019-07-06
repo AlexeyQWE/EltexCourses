@@ -1,16 +1,59 @@
 package eltex_tasks;
+import java.io.*;
+import java.util.Scanner;
 
 class Main {
 
-	public static void main(String args[]) {
+	public static void read (String [] fio, String [] phone, String [] email)  {
 
-		String [] fio = {"Brown", "Smit", "Vega"};
-		String [] phone = {"+71231232323", "+78531239856", "+79356782356"};
-		String [] email = {"Brown@eltex.com", "Smit@eltex.com", "Vega@eltex.com"};
+		try {
+			FileReader fr = new FileReader ("files/emails.txt");
+			Scanner scan = new Scanner(fr);
+
+			for (int j = 0; scan.hasNextLine(); ++j) {
+	           	email[j] = scan.nextLine();
+	        }
+	     }
+	     catch (IOException error) {
+	     	System.err.print(error.getMessage()); 
+	     }
+
+	    try {
+	       FileReader fr = new FileReader ("files/last_names.txt");
+	       Scanner scan = new Scanner(fr);
+
+			for (int j = 0; scan.hasNextLine(); ++j) {
+	           	fio[j] = scan.nextLine();
+	        }
+	     }
+	     catch (IOException error) {
+	     	System.err.print(error.getMessage()); 
+	     }
+
+	    try {
+	       FileReader fr = new FileReader ("files/phones.txt");
+	       Scanner scan = new Scanner(fr);
+
+			for (int j = 0; scan.hasNextLine(); ++j) {
+	           	phone[j] = scan.nextLine();
+	        }
+	    }
+	    catch (IOException error) {
+	     	System.err.print(error.getMessage()); 
+	     }
+	}
+
+	public static void main(String args[])  {
+
+		String [] fio =  new String[3];
+		String [] phone = new String[3];
+		String [] email = new String[3];
 
 		Developer [] dev = new Developer[3];
 		Manager [] mng = new Manager[3];
 		MainManager [] main_mng = new MainManager[3];
+
+		read(fio, phone, email);
 
 		for (int i = 0; i < 3; ++i) {
 			dev[i] = new Developer(fio[i], phone[i], email[i]);
