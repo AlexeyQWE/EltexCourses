@@ -20,11 +20,5 @@ public abstract class User implements CSV {
 
 	abstract public String toCSV();
 	abstract public void fromCSV(String str);
-
-	public void resetId () {
-
-		this.id = 0;
-	}
-
 }
 

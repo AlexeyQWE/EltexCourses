@@ -7,7 +7,7 @@ class Main {
 	public static void read (String [] dev, String [] mng, String [] main_mng)  {
 
 		try {
-			FileReader fr = new FileReader ("files/dev.txt");
+			FileReader fr = new FileReader ("files/dev.csv");
 			Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) {
@@ -19,7 +19,7 @@ class Main {
 	     }
 
 	   try {
-	       FileReader fr = new FileReader ("files/mng.txt");
+	       FileReader fr = new FileReader ("files/mng.csv");
 	       Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) {
@@ -31,7 +31,7 @@ class Main {
 	     }
 
 	    try {
-	       FileReader fr = new FileReader ("files/main_mng.txt");
+	       FileReader fr = new FileReader ("files/main_mng.csv");
 	       Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) {
@@ -43,10 +43,10 @@ class Main {
 	     }
 	}
 
-	public static void wtire (Developer [] dev) {
+	public static void wtire (Developer [] dev, Manager [] mng, MainManager [] main_mng) {
 
 		try {
-			FileWriter fw = new FileWriter ("files/dev_output_info.txt");
+			FileWriter fw = new FileWriter ("files/dev_output_info.csv");
 			for (int i = 0; i < 3; ++i) {
 				fw.write(dev[i].toCSV() + '\n');	
 			}
@@ -55,12 +55,9 @@ class Main {
 		catch (IOException error) {
 	     	System.err.print(error.getMessage()); 
 	     }
-	}
 
-	public static void wtire (Manager [] mng) {
-
-		try {
-			FileWriter fw = new FileWriter ("files/mng_output_info.txt");
+	    try {
+			FileWriter fw = new FileWriter ("files/mng_output_info.csv");
 			for (int i = 0; i < 3; ++i) {
 				fw.write(mng[i].toCSV() + '\n');
 			}
@@ -69,14 +66,11 @@ class Main {
 		catch (IOException error) {
 	     	System.err.print(error.getMessage()); 
 	     }
-	}
 
-	public static void wtire (MainManager [] mng) {
-
-		try {
-			FileWriter fw = new FileWriter ("files/main_mng_output_info.txt");
+	     try {
+			FileWriter fw = new FileWriter ("files/main_mng_output_info.csv");
 			for (int i = 0; i < 3; ++i) {
-				fw.write(mng[i].toCSV() + '\n');
+				fw.write(main_mng[i].toCSV() + '\n');
 			}
 			fw.close();
 		}
@@ -105,10 +99,7 @@ class Main {
 			System.out.println("Check my info in dev_output_info.txt\n");
 		}
 
-		wtire(dev);
-
 		System.out.println();
-		dev[0].resetId();
 
 		for (int i = 0; i < 3; ++i) {
 			mng[i] = new Manager();
@@ -118,10 +109,7 @@ class Main {
 			System.out.println("Check my info in mng_output_info.txt\n");
 		}
 
-		wtire(mng);
-
 		System.out.println();
-		mng[0].resetId();
 
 		for (int i = 0; i < 3; ++i) {
 			main_mng[i] = new MainManager();
@@ -132,6 +120,6 @@ class Main {
 			System.out.println("Check my info in main_mng_output_info.txt\n");
 		}
 
-		wtire(main_mng);
+		wtire(dev, mng, main_mng);
 	}
 }
