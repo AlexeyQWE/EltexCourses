@@ -6,11 +6,6 @@ public class MainManager extends Manager {
 
 	MainManager () {};
 
-	MainManager (String fio, String phone, String email) {
-
-		super(fio, phone, email);
-	}
-
 	@Override
 	public void speak () {
 
@@ -28,17 +23,5 @@ public class MainManager extends Manager {
 				}
 			}
 		}
-	}
-
-	@Override
-	public String getTitle () {
-
-		return this.sales[this.id - 1].getTitle();
-	}
-
-	@Override
-	public int getPrice () {
-
-		return this.sales[this.id - 1].getPrice();
 	}
 }

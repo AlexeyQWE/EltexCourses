@@ -3,3 +3,7 @@ build/
 files/dev_output_info.txt
 files/mng_output_info.txt
 files/main_mng_output_info.txt
+.idea/
+gradle/
+gradlew
+gradlew.bat

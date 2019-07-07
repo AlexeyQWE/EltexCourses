@@ -4,14 +4,26 @@ import java.util.Scanner;
 
 class Main {
 
-	public static void read (String [] fio, String [] phone, String [] email)  {
+	public static void read (String [] dev, String [] mng, String [] main_mng)  {
 
 		try {
-			FileReader fr = new FileReader ("files/emails.txt");
+			FileReader fr = new FileReader ("files/dev.txt");
 			Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) {
-	           	email[j] = scan.nextLine();
+	           	dev[j] = scan.nextLine();
+	        }
+	     }
+	     catch (IOException error) {
+	     	System.err.print(error.getMessage()); 
+	     }
+
+	   try {
+	       FileReader fr = new FileReader ("files/mng.txt");
+	       Scanner scan = new Scanner(fr);
+
+			for (int j = 0; scan.hasNextLine(); ++j) {
+	           	mng[j] = scan.nextLine();
 	        }
 	     }
 	     catch (IOException error) {
@@ -19,23 +31,11 @@ class Main {
 	     }
 
 	    try {
-	       FileReader fr = new FileReader ("files/last_names.txt");
+	       FileReader fr = new FileReader ("files/main_mng.txt");
 	       Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) {
-	           	fio[j] = scan.nextLine();
-	        }
-	     }
-	     catch (IOException error) {
-	     	System.err.print(error.getMessage()); 
-	     }
-
-	    try {
-	       FileReader fr = new FileReader ("files/phones.txt");
-	       Scanner scan = new Scanner(fr);
-
-			for (int j = 0; scan.hasNextLine(); ++j) {
-	           	phone[j] = scan.nextLine();
+	           	main_mng[j] = scan.nextLine();
 	        }
 	    }
 	    catch (IOException error) {
@@ -48,10 +48,7 @@ class Main {
 		try {
 			FileWriter fw = new FileWriter ("files/dev_output_info.txt");
 			for (int i = 0; i < 3; ++i) {
-				fw.write("\nMy Id is " + dev[i].getId());
-				fw.write("\nMy last name is " + dev[i].getFio());
-				fw.write("\nMy phone is " + dev[i].getPhone());
-				fw.write("\nMy email is " + dev[i].getEmail() + "\n"); 		
+				fw.write(dev[i].toCSV() + '\n');	
 			}
 			fw.close();
 		}
@@ -65,10 +62,7 @@ class Main {
 		try {
 			FileWriter fw = new FileWriter ("files/mng_output_info.txt");
 			for (int i = 0; i < 3; ++i) {
-				fw.write("\nMy Id is " + mng[i].getId());
-				fw.write("\nMy last name is " + mng[i].getFio());
-				fw.write("\nMy phone is " + mng[i].getPhone());
-				fw.write("\nMy email is " + mng[i].getEmail() + "\n");
+				fw.write(mng[i].toCSV() + '\n');
 			}
 			fw.close();
 		}
@@ -82,10 +76,7 @@ class Main {
 		try {
 			FileWriter fw = new FileWriter ("files/main_mng_output_info.txt");
 			for (int i = 0; i < 3; ++i) {
-				fw.write("\nMy Id is " + mng[i].getId());
-				fw.write("\nMy last name is " + mng[i].getFio());
-				fw.write("\nMy phone is " + mng[i].getPhone());
-				fw.write("\nMy email is " + mng[i].getEmail() + "\n");
+				fw.write(mng[i].toCSV() + '\n');
 			}
 			fw.close();
 		}
@@ -96,21 +87,22 @@ class Main {
 
 	public static void main(String args[]) {
 
-		String [] fio =  new String[3];
-		String [] phone = new String[3];
-		String [] email = new String[3];
+		String [] devs =  new String[3];
+		String [] mngs = new String[3];
+		String [] main_mngs = new String[3];
 
 		Developer [] dev = new Developer[3];
 		Manager [] mng = new Manager[3];
 		MainManager [] main_mng = new MainManager[3];
 
-		read(fio, phone, email);
+		read(devs, mngs, main_mngs);
 
 		for (int i = 0; i < 3; ++i) {
-			dev[i] = new Developer(fio[i], phone[i], email[i]);
+			dev[i] = new Developer();
+			dev[i].fromCSV(devs[i]);
 			dev[i].speak();	
-			System.out.println("My last name is " + dev[i].getFio());
-			System.out.println("I use the language " + dev[i].getLang() + "\nCheck my info in dev_output_info.txt\n");
+			System.out.println("My last name is" + dev[i].getFio());
+			System.out.println("Check my info in dev_output_info.txt\n");
 		}
 
 		wtire(dev);
@@ -119,10 +111,11 @@ class Main {
 		dev[0].resetId();
 
 		for (int i = 0; i < 3; ++i) {
-			mng[i] = new Manager(fio[i], phone[i], email[i]);
+			mng[i] = new Manager();
+			mng[i].fromCSV(mngs[i]);
 			mng[i].speak();
-			System.out.println("My last name is " + mng[i].getFio());
-			System.out.println("Im selling " + mng[i].getTitle() + ", Cost is " + mng[i].getPrice() + "\nCheck my info in mng_output_info.txt\n");
+			System.out.println("My last name is" + mng[i].getFio());
+			System.out.println("Check my info in mng_output_info.txt\n");
 		}
 
 		wtire(mng);
@@ -130,14 +123,13 @@ class Main {
 		System.out.println();
 		mng[0].resetId();
 
-		MainManager tmp = new MainManager ();
-		tmp.sort();
-
 		for (int i = 0; i < 3; ++i) {
-			main_mng[i] = new MainManager(fio[i], phone[i], email[i]);
+			main_mng[i] = new MainManager();
+			main_mng[i].fromCSV(main_mngs[i]);
 			main_mng[i].speak();
-			System.out.println("My last name is " + main_mng[i].getFio());
-			System.out.println("Im selling " + tmp.getTitle() + ", Cost is " + tmp.getPrice() + "\nCheck my info in main_mng_output_info.txt\n");
+			main_mng[i].sort();
+			System.out.println("My last name is" + main_mng[i].getFio());
+			System.out.println("Check my info in main_mng_output_info.txt\n");
 		}
 
 		wtire(main_mng);
