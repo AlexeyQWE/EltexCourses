@@ -61,29 +61,37 @@ public class Main {
 
     public static void LinkedList_ArrayList_TreeSet_Test(LinkedList <Integer>  list,  ArrayList <Integer> arrlist,  TreeSet <Integer> tree,  int [] arr) {
 
-        long startTime = System.nanoTime();
         for (int i = 0; i < arr.length; ++i) {
             list.add(arr[i]);
+        }
+
+        long startTime = System.nanoTime();
+        for (int i = 0; i < arr.length / 100000; ++i) {
+            list.add(600000, arr[i]);
         }
         long stopTime = System.nanoTime();
         System.out.println("\nElapsedTime (Add Linkedlist): "+ (stopTime - startTime) * dt + ".sec");
 
-        startTime = System.nanoTime();
-        for (int i = 0; i < arr.length / 2; ++i) {
+       startTime = System.nanoTime();
+        for (int i = 100000; i < arr.length / 2; ++i) {
             list.remove(i);
         }
         stopTime = System.nanoTime();
         System.out.println("ElapsedTime (Remove Linkedlist): " + (stopTime - startTime) * dt + ".sec\n");
 
-        startTime = System.nanoTime();
         for (int i = 0; i < arr.length; ++i) {
             arrlist.add(arr[i]);
+        }
+
+        startTime = System.nanoTime();
+        for (int i = 0; i < arr.length / 100000; ++i) {
+            arrlist.add(600000, arr[i]);
         }
         stopTime = System.nanoTime();
         System.out.println("ElapsedTime (Add Arraylist): " + (stopTime - startTime) * dt + ".sec");
 
         startTime = System.nanoTime();
-        for (int i = 0; i < arr.length / 2; ++i) {
+        for (int i = 100000; i < arr.length / 2; ++i) {
             arrlist.remove(i);
         }
         stopTime = System.nanoTime();
