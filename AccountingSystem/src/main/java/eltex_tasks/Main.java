@@ -7,7 +7,7 @@ class Main {
 	public static void read (String [] dev, String [] mng, String [] main_mng)  {
 
 		try {
-			FileReader fr = new FileReader ("files/dev.csv");
+			FileReader fr = new FileReader ("resources/dev.csv");
 			Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) {
@@ -19,7 +19,7 @@ class Main {
 	     }
 
 	   try {
-	       FileReader fr = new FileReader ("files/mng.csv");
+	       FileReader fr = new FileReader ("resources/mng.csv");
 	       Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) {
@@ -31,7 +31,7 @@ class Main {
 	     }
 
 	    try {
-	       FileReader fr = new FileReader ("files/main_mng.csv");
+	       FileReader fr = new FileReader ("resources/main_mng.csv");
 	       Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) {
@@ -46,7 +46,7 @@ class Main {
 	public static void wtire (Developer [] dev, Manager [] mng, MainManager [] main_mng) {
 
 		try {
-			FileWriter fw = new FileWriter ("files/dev_output_info.csv");
+			FileWriter fw = new FileWriter ("resources/dev_output_info.csv");
 			for (int i = 0; i < 3; ++i) {
 				fw.write(dev[i].toCSV() + '\n');	
 			}
@@ -57,7 +57,7 @@ class Main {
 	     }
 
 	    try {
-			FileWriter fw = new FileWriter ("files/mng_output_info.csv");
+			FileWriter fw = new FileWriter ("resources/mng_output_info.csv");
 			for (int i = 0; i < 3; ++i) {
 				fw.write(mng[i].toCSV() + '\n');
 			}
@@ -68,7 +68,7 @@ class Main {
 	     }
 
 	     try {
-			FileWriter fw = new FileWriter ("files/main_mng_output_info.csv");
+			FileWriter fw = new FileWriter ("resources/main_mng_output_info.csv");
 			for (int i = 0; i < 3; ++i) {
 				fw.write(main_mng[i].toCSV() + '\n');
 			}
