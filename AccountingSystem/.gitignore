@@ -1,8 +1,8 @@
 .gradle/
 build/
-files/dev_output_info.csv
-files/mng_output_info.csv
-files/main_mng_output_info.csv
+resources/dev_output_info.csv
+resources/mng_output_info.csv
+resources/main_mng_output_info.csv
 .idea/
 gradle/
 gradlew
