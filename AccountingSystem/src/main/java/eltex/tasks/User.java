@@ -1,4 +1,4 @@
-package eltex_tasks;
+package eltex.tasks;
 
 public abstract class User implements CSV, Comparable <User>{
 

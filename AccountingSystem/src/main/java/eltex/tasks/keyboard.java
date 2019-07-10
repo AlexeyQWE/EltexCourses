@@ -1,4 +1,4 @@
-package eltex_tasks;
+package eltex.tasks;
 
 public class keyboard extends Sales {
 

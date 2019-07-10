@@ -1,4 +1,4 @@
-package eltex_tasks;
+package eltex.tasks;
 
 class Task <T extends User, V extends User > {
 
