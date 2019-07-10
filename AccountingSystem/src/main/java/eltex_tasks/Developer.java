@@ -4,6 +4,9 @@ public class Developer extends User {
 
 	private String [] lang = {"Pyton", "Ruby", "Java"};
 
+	private String task_title;
+	private String task_description;
+
 	public void speak () {
 
 		System.out.println("Hello! Im a Developer! ");
@@ -33,6 +36,16 @@ public class Developer extends User {
 
 		return this.lang[this.id];
 	}
+
+	public String getTaskTitle () {
+
+		return this.task_title;
+	}
+
+	public String getTaskDescription () {
+
+		return this.task_description;
+	}
 		
 	public void setId (String arg) {
 
@@ -55,9 +68,21 @@ public class Developer extends User {
 		this.email = arg;
 	}
 
+	public void setTaskTitle (String arg) {
+
+		this.task_title = arg;
+	}
+
+	public void setTaskDescription (String arg) {
+
+		this.task_description = arg;
+	}
+
+
 	public String toCSV() {
 
-		return Integer.toString(this.id) + " ; " + this.fio + " ; " + this.phone + " ; " + this.email + " ; " + this.lang[this.id] + " ; ";
+		return this.id.toString() + " ; " + this.fio + " ; " + this.phone + " ; " + this.email + " ; " + this.lang[this.id] + " ; " + 
+				this.task_title + ";" + this.task_description + ";";
 	}
 
 	public void fromCSV(String str) {
@@ -67,5 +92,7 @@ public class Developer extends User {
 		setFio (arg [1]);
 		setPhone (arg [2]);
 		setEmail (arg [3]);
+		setTaskTitle(arg[4]);
+		setTaskDescription(arg[5]);
 	}
 }

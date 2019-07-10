@@ -13,6 +13,7 @@ class Main {
 			for (int j = 0; scan.hasNextLine(); ++j) {
 	           	dev[j] = scan.nextLine();
 	        }
+	        fr.close();
 	     }
 	     catch (IOException error) {
 	     	System.err.print(error.getMessage()); 
@@ -25,6 +26,7 @@ class Main {
 			for (int j = 0; scan.hasNextLine(); ++j) {
 	           	mng[j] = scan.nextLine();
 	        }
+	        fr.close();
 	     }
 	     catch (IOException error) {
 	     	System.err.print(error.getMessage()); 
@@ -37,10 +39,11 @@ class Main {
 			for (int j = 0; scan.hasNextLine(); ++j) {
 	           	main_mng[j] = scan.nextLine();
 	        }
+	        fr.close();
 	    }
 	    catch (IOException error) {
 	     	System.err.print(error.getMessage()); 
-	     }
+	     }	 
 	}
 
 	public static void wtire (Developer [] dev, Manager [] mng, MainManager [] main_mng) {
@@ -121,5 +124,20 @@ class Main {
 		}
 
 		wtire(dev, mng, main_mng);
+
+		System.out.println("Compare id first and last developer: " + dev[0].compareTo(dev[2]));
+		System.out.println("Compare id last and first managers: " + mng[2].compareTo(mng[0]));
+
+		Task <Manager, Developer > [] task =  new Task[3]; 
+
+		for (int i = 0; i < 3; ++i) {
+			task[i] = new Task <> (mng[i], dev[i]);
+			System.out.print("\nManager's task: " + task[i].T_getTitle());
+			System.out.println(" Description - " + task[i].T_getDescription());
+			System.out.print("Developer's task: " + task[i].V_getTitle());
+			System.out.println(" Description - " + task[i].V_getDescription());
+
+		}
+
 	}
 }
