@@ -5,9 +5,9 @@ public class Manager extends User {
 	protected Sales [] sales = new Sales[3];
 
 	{
-		sales[0] = new telephone();
-		sales[1] = new headphone();
-		sales[2] = new keyboard();
+		sales[0] = new Sales("Telephone", 10000);
+		sales[1] = new Sales("Keyboard", 8000);
+		sales[2] = new Sales("headphone", 6000);
 	}
 
 	private String task_title;
