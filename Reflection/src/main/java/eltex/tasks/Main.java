@@ -100,6 +100,19 @@ public class Main {
                  System.out.print(paramType.getName() + " ");
              }
         }
+	System.out.println("\n");
+	Field[] fl = std.getClass().getDeclaredFields();
+	
+	for (Field fio: fl) {
+		 System.out.println("FIeld - " + fio.getName());
+	}
+
+	System.out.println();
+	Method [] met = std.getClass().getDeclaredMethods();
+
+	for (Method fio: met) {
+		 System.out.println("Method - " + fio.getName());
+	}
 
     }
 }
