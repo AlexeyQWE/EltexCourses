@@ -1,0 +1,8 @@
+.gradle/
+build/
+.idea/
+gradle/
+gradlew
+gradlew.bat
+out/
+Enum.iml
