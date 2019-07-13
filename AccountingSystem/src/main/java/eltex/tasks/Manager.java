@@ -10,9 +10,6 @@ public class Manager extends User {
 		sales[2] = new Sales("headphone", 6000);
 	}
 
-	private String task_title;
-	private String task_description;
-
 	Manager () {};
 
 	public void speak () {
@@ -51,16 +48,6 @@ public class Manager extends User {
 		return this.sales[this.id].getPrice();
 	}
 
-	public String getTaskTitle () {
-
-		return this.task_title;
-	}
-
-	public String getTaskDescription () {
-
-		return this.task_description;
-	}
-
 	public void setId (String arg) {
 
 		this.id = Integer.valueOf(arg);
@@ -82,20 +69,10 @@ public class Manager extends User {
 		this.email = arg;
 	}
 
-	public void setTaskTitle (String arg) {
-
-		this.task_title = arg;
-	}
-
-	public void setTaskDescription (String arg) {
-
-		this.task_description = arg;
-	}
-
 	public String toCSV() {
 
 		return this.id.toString() + " ; " + this.fio + " ; " + this.phone + " ; " + this.email + " ; " + this.sales[this.id].getTitle() + " ; "
-		+  this.sales[this.id].getPrice() + ";" + this.task_title + ";" + this.task_description + ";";
+		+  this.sales[this.id].getPrice() + ";";
 	}
 
 	public void fromCSV(String str) {
@@ -105,7 +82,5 @@ public class Manager extends User {
 		setFio (arg [1]);
 		setPhone (arg [2]);
 		setEmail (arg [3]);
-		setTaskTitle(arg[4]);
-		setTaskDescription(arg[5]);
 	}
 }

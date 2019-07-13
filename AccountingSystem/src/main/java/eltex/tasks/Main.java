@@ -131,12 +131,15 @@ class Main {
 		Task <Manager, Developer > [] task =  new Task[3]; 
 
 		for (int i = 0; i < 3; ++i) {
-			task[i] = new Task <> (mng[i], dev[i]);
-			System.out.print("\nManager's task: " + task[i].T_getTitle());
-			System.out.println(" Description - " + task[i].T_getDescription());
-			System.out.print("Developer's task: " + task[i].V_getTitle());
-			System.out.println(" Description - " + task[i].V_getDescription());
-
+			task[i] = new Task <> ();
+			task[i].setOwner(mng[i]);
+			task[i].setQa(dev[i]);
+			task[i].setTitle("Data base testing");
+			task[i].setDescription("Fix bag in data base system");
+			System.out.println("\nTask: " + task[i].getTitle());
+			System.out.println("Description - " + task[i].getDescription());
+			System.out.println("Owner: " + task[i].getOwner());
+			System.out.println("Qa - " + task[i].getQa());
 		}
 
 	}

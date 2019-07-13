@@ -4,50 +4,46 @@ class Task <T extends User, V extends User > {
 
 	private T owner;
 	private V qa;
+	private String title;
+	private String description;
 
-	Task (T owner, V qa) { 
+	public T getOwner () {
+
+		return this.owner;
+	}
+
+	public V getQa () {
+
+		return this.qa;
+	}
+
+	public String getTitle() {
+
+		return this.title;
+	} 
+
+	public String getDescription() {
+
+		return this.description;
+	} 
+
+	public void setOwner (T owner) {
 
 		this.owner = owner;
+	}
+
+	public void setQa (V qa) {
+
 		this.qa = qa;
 	}
 
-	public String T_getTitle() {
+	public void setTitle (String title) {
 
-		return this.owner.getTaskTitle();
-	} 
-
-	public String T_getDescription() {
-
-		return this.owner.getTaskDescription();
-	} 
-
-	public String V_getTitle() {
-
-		return this.qa.getTaskTitle();
-	} 
-
-	public String V_getDescription() {
-
-		return this.qa.getTaskDescription();
-	} 
-
-	public void T_SetTitle (String title) {
-
-		this.owner.setTaskTitle(title); 
+		this.title = title; 
 	}
 
-	public void T_SetDescription (String description) {
+	public void setDescription (String description) {
 
-		this.owner.setTaskDescription(description);
-	}
-
-	public void V_SetTitle (String title) {
-
-		this.qa.setTaskTitle(title);
-	}
-
-	public void V_SetDescription (String description) {
-
-		this.qa.setTaskDescription(description);
+		this.description = description;
 	}
 }
