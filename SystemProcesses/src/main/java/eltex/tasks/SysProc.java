@@ -43,6 +43,9 @@ class SysProc {
 
 	public static void writeJSON(String [] pid_dir, String [] proc_name) {
 
+		File  f = new File("resources/");
+		f.mkdir();
+
 		try {
 			FileWriter fw = new FileWriter ("resources/proc_info.json");	
 			for (int i = 0; i < proc_name.length; ++i)  {
