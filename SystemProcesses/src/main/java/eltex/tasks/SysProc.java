@@ -1,6 +1,6 @@
 package eltex.tasks;
+
 import java.io.*;
-import java.lang.NullPointerException;
 import java.util.Scanner;
 
 class SysProc {
