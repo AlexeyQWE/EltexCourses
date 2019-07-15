@@ -1,11 +1,14 @@
 package eltex.tasks;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Scanner;
 
 class SysProc {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		File dir = new File("/proc");
 
@@ -39,11 +42,17 @@ class SysProc {
 	     	}
 		}
 		writeJSON(pid_dir, proc_name);
+
+		System.out.print("Input process name for kill: ");
+		Scanner scan = new Scanner(System.in);
+		String name = scan.nextLine();
+
+		deleteDirectory("/proc/" + name);
 	}
 
 	public static void writeJSON(String [] pid_dir, String [] proc_name) {
 
-		File  f = new File("resources/");
+		File  f = new File("resources");
 		f.mkdir();
 
 		try {
@@ -66,5 +75,30 @@ class SysProc {
 			    System.err.print(error.getMessage()); 
 		}
 
+	}
+
+	public static void deleteDirectory(String directoryFilePath) throws IOException
+	{
+		Path directory = Paths.get(directoryFilePath);
+
+		if (Files.exists(directory))
+		{
+			Files.walkFileTree(directory, new SimpleFileVisitor<Path>()
+			{
+				@Override
+				public FileVisitResult visitFile(Path path, BasicFileAttributes basicFileAttributes) throws IOException
+				{
+					Files.delete(path);
+					return FileVisitResult.CONTINUE;
+				}
+
+				@Override
+				public FileVisitResult postVisitDirectory(Path directory, IOException ioException) throws IOException
+				{
+					Files.delete(directory);
+					return FileVisitResult.CONTINUE;
+				}
+			});
+		}
 	}
 }
