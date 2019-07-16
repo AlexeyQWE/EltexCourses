@@ -1,2 +1,4 @@
 target/
+.gradle/
+build/
 resources/user_output_info.json

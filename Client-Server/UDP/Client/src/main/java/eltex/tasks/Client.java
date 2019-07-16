@@ -9,8 +9,8 @@ public class Client {
 
         try {
             byte [] data = "Hello".getBytes();
-            InetAddress addr = InetAddress.getByName("172.21.0.133");
-            DatagramPacket pack = new DatagramPacket(data, data.length, addr, 1050);
+            InetAddress addr = InetAddress.getByName("192.168.1.163");
+            DatagramPacket pack = new DatagramPacket(data, data.length, addr, 1025);
             DatagramSocket ds = new DatagramSocket();
             ds.send(pack);
             ds.close();
