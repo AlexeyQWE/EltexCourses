@@ -1,13 +1,9 @@
 package eltex.tasks;
 
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Document;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class DOM extends Msg {
