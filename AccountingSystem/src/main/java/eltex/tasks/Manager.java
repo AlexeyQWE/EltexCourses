@@ -12,12 +12,6 @@ public class Manager extends User {
 
 	Manager () {};
 
-	public void speak () {
-
-		System.out.print("Hello! Im a Manager! ");
-
-	}
-
 	public Integer getId () {
 
 		return this.id;
@@ -38,7 +32,7 @@ public class Manager extends User {
 		return this.email;
 	}
 
-	public String getSaleTitle (int i) {
+	public String getTitle (int i) {
 
 		return this.sales[i].getTitle();
 	}

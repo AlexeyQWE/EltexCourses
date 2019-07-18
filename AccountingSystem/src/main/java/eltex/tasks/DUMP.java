@@ -25,7 +25,7 @@ public class DUMP {
             Statement statement = connection.createStatement();
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO manager VALUES (" + mng[i].getId() + ", '" + mng[i].getFio() + "', '" + mng[i].getPhone() + "', '"
-                        + mng[i].getEmail() +"' ,'" + mng[i].getSaleTitle(i) + "', '" + mng[i].getPrice(i) + "')");
+                        + mng[i].getEmail() +"' ,'" + mng[i].getTitle(i) + "', '" + mng[i].getPrice(i) + "')");
             }
             connection.close();
         } catch (SQLException e) {
