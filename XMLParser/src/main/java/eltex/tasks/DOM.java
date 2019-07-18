@@ -16,11 +16,13 @@ public class DOM extends Msg {
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File("resources/xml_sample.xml"));
         NodeList msgElements = document.getDocumentElement().getElementsByTagName("msg");
+
         for (int i = 0; i < msgElements.getLength(); ++i) {
             Node msg = msgElements.item(i);
             NamedNodeMap attributes = msg.getAttributes();
             msgs.add(new Msg(attributes.getNamedItem("to").getNodeValue(), attributes.getNamedItem("from").getNodeValue(), attributes.getNamedItem("title").getNodeValue()));
         }
+
         for (Msg msg: msgs) {
             System.out.println(String.format("To %s, from %s, title - %s", msg.getTo(), msg.getFrom(), msg.getTitle()));
         }
