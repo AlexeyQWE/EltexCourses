@@ -1,0 +1,17 @@
+client/.gradle/
+client/build/
+client/.idea/
+client/gradle/
+client/gradlew
+client/gradlew.bat
+client/out/
+client/client.iml
+
+server/.gradle/
+server/build/
+server/.idea/
+server/gradle/
+server/gradlew
+server/gradlew.bat
+server/out/
+server/server.iml
