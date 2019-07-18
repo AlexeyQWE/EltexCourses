@@ -38,14 +38,14 @@ public class Manager extends User {
 		return this.email;
 	}
 
-	public String getSaleTitle () {
+	public String getSaleTitle (int i) {
 
-		return this.sales[this.id].getTitle();
+		return this.sales[i].getTitle();
 	}
 
-	public int getPrice () {
+	public int getPrice (int i) {
 
-		return this.sales[this.id].getPrice();
+		return this.sales[i].getPrice();
 	}
 
 	public void setId (String arg) {
@@ -69,10 +69,20 @@ public class Manager extends User {
 		this.email = arg;
 	}
 
-	public String toCSV() {
+	public void setTitle (String arg, int i) {
 
-		return this.id.toString() + " ; " + this.fio + " ; " + this.phone + " ; " + this.email + " ; " + this.sales[this.id].getTitle() + " ; "
-		+  this.sales[this.id].getPrice() + ";";
+		this.sales[i].setTitle(arg);
+	}
+
+	public void setPrice (String arg, int i) {
+
+		this.sales[i].setPrice(Integer.parseInt(arg));
+	}
+
+	public String toCSV(int i) {
+
+		return this.id.toString() + " ; " + this.fio + " ; " + this.phone + " ; " + this.email + " ; " + this.sales[i].getTitle() + " ; "
+		+  this.sales[i].getPrice() + ";";
 	}
 
 	public void fromCSV(String str) {

@@ -3,7 +3,7 @@ package eltex.tasks;
 public class Sales {
 
 	private String title;
-	private int price;
+	private Integer price;
 
 
 	Sales (String title, int price) {

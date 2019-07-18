@@ -1,5 +1,6 @@
 package eltex.tasks;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 class Main {
@@ -51,7 +52,7 @@ class Main {
 		try {
 			FileWriter fw = new FileWriter ("resources/dev_output_info.csv");
 			for (int i = 0; i < 3; ++i) {
-				fw.write(dev[i].toCSV() + '\n');	
+				fw.write(dev[i].toCSV(i) + '\n');
 			}
 			fw.close();
 		}
@@ -62,7 +63,7 @@ class Main {
 	    try {
 			FileWriter fw = new FileWriter ("resources/mng_output_info.csv");
 			for (int i = 0; i < 3; ++i) {
-				fw.write(mng[i].toCSV() + '\n');
+				fw.write(mng[i].toCSV(i) + '\n');
 			}
 			fw.close();
 		}
@@ -70,19 +71,19 @@ class Main {
 	     	System.err.print(error.getMessage()); 
 	     }
 
-	     try {
+	     /*try {
 			FileWriter fw = new FileWriter ("resources/main_mng_output_info.csv");
 			for (int i = 0; i < 3; ++i) {
-				fw.write(main_mng[i].toCSV() + '\n');
+				fw.write(main_mng[i].toCSV(i) + '\n');
 			}
 			fw.close();
 		}
 		catch (IOException error) {
 	     	System.err.print(error.getMessage()); 
-	     }
+	     }*/
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws SQLException {
 
 		String [] devs =  new String[3];
 		String [] mngs = new String[3];
@@ -96,37 +97,40 @@ class Main {
 
 		for (int i = 0; i < 3; ++i) {
 			dev[i] = new Developer();
-			dev[i].fromCSV(devs[i]);
-			dev[i].speak();	
-			System.out.println("My last name is" + dev[i].getFio());
-			System.out.println("Check my info in dev_output_info.txt\n");
+			//dev[i].fromCSV(devs[i]);
+			//dev[i].speak();
+			//System.out.println("My last name is" + dev[i].getFio());
+			//System.out.println("Check my info in dev_output_info.txt\n");
 		}
 
 		System.out.println();
 
 		for (int i = 0; i < 3; ++i) {
 			mng[i] = new Manager();
-			mng[i].fromCSV(mngs[i]);
-			mng[i].speak();
-			System.out.println("My last name is" + mng[i].getFio());
-			System.out.println("Check my info in mng_output_info.txt\n");
+			//mng[i].fromCSV(mngs[i]);
+			//mng[i].speak();
+			//System.out.println("My last name is" + mng[i].getFio());
+			//System.out.println("Check my info in mng_output_info.txt\n");
 		}
 
 		System.out.println();
 
 		for (int i = 0; i < 3; ++i) {
 			main_mng[i] = new MainManager();
-			main_mng[i].fromCSV(main_mngs[i]);
-			main_mng[i].speak();
+			//main_mng[i].fromCSV(main_mngs[i]);
+			//main_mng[i].speak();
 			main_mng[i].sort();
-			System.out.println("My last name is" + main_mng[i].getFio());
-			System.out.println("Check my info in main_mng_output_info.txt\n");
+			//System.out.println("My last name is" + main_mng[i].getFio());
+			//System.out.println("Check my info in main_mng_output_info.txt\n");
 		}
 
+		DUMP.fromMySQL(dev,mng);
+		//DUMP.toMySQL(dev, mng);
 		wtire(dev, mng, main_mng);
 
-		System.out.println("Compare id first and last developer: " + dev[0].compareTo(dev[2]));
-		System.out.println("Compare id last and first managers: " + mng[2].compareTo(mng[0]));
+
+		//System.out.println("Compare id first and last developer: " + dev[0].compareTo(dev[2]));
+		//System.out.println("Compare id last and first managers: " + mng[2].compareTo(mng[0]));
 
 		Task <Manager, Developer > [] task =  new Task[3]; 
 
@@ -136,10 +140,10 @@ class Main {
 			task[i].setQa(dev[i]);
 			task[i].setTitle("Data base testing");
 			task[i].setDescription("Fix bag in data base system");
-			System.out.println("\nTask: " + task[i].getTitle());
-			System.out.println("Description - " + task[i].getDescription());
-			System.out.println("Owner: " + task[i].getOwner());
-			System.out.println("Qa - " + task[i].getQa());
+			//System.out.println("\nTask: " + task[i].getTitle());
+			//System.out.println("Description - " + task[i].getDescription());
+			//System.out.println("Owner: " + task[i].getOwner());
+			//System.out.println("Qa - " + task[i].getQa());
 		}
 
 	}
