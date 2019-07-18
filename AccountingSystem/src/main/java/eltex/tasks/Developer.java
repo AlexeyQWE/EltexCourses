@@ -4,11 +4,6 @@ public class Developer extends User {
 
 	private String [] lang = {"Pyton", "Ruby", "Java"};
 
-	public void speak () {
-
-		System.out.println("Hello! Im a Developer! ");
-	}
-
 	public Integer getId () {
 
 		return this.id;

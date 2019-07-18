@@ -7,7 +7,6 @@ public abstract class User implements CSV, Comparable <User>{
 	protected String phone;
 	protected String email; 
 
-	abstract public void speak();
 	abstract public Integer getId ();
 	abstract public String getFio ();
 	abstract public String getPhone();
