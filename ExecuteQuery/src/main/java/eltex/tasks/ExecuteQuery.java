@@ -13,7 +13,7 @@ public class ExecuteQuery {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, "root", "NOT_A_PASSWORD_ACTUALLY");
             Statement statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO developer VALUES (4, 'Ramus', '+79529344014')");
+            statement.executeUpdate("INSERT INTO developer VALUES (4, 'Ramus', '+79521529085')");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM developer");
 
             while (resultSet.next()) {
