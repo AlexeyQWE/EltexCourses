@@ -21,6 +21,7 @@ public class DOM extends Msg {
             Node msg = msgElements.item(i);
             NamedNodeMap attributes = msg.getAttributes();
             msgs.add(new Msg(attributes.getNamedItem("to").getNodeValue(), attributes.getNamedItem("from").getNodeValue(), attributes.getNamedItem("title").getNodeValue()));
+            System.out.println("Text: " + msg.getTextContent());
         }
 
         for (Msg msg: msgs) {
