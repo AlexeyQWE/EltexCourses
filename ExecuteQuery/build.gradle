@@ -1,0 +1,15 @@
+apply plugin: "java"
+apply plugin: "application"
+mainClassName  = "eltex.tasks.ExecuteQuery"
+
+repositories {
+	mavenCentral()
+}
+dependencies {
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0+'
+	compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+run {
+	standardInput = System.in	
+}
