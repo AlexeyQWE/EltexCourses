@@ -1,2 +1,10 @@
-.gradle/
-build/
+TCP/Server/.gradle/
+TCP/Server/build/
+TCP/Client/.gradle/
+TCP/Client/build/
+UDP/Server/.gradle/
+UDP/Server/build/
+UDP/Client/.gradle/
+UDP/Client/build/
+
+

@@ -8,7 +8,7 @@ public class Client {
 
     public static void main(String[] args) throws IOException {
 
-        try (Socket s = new Socket("192.168.1.163", 1025)){
+        try (Socket s = new Socket("192.168.1.163", 1027)){
             InputStream inSteam = s.getInputStream();
             OutputStream outStream = s.getOutputStream();
             Scanner in = new Scanner(inSteam);
