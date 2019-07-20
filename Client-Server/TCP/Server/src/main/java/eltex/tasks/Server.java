@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Server {
     public static void main(String[] args) {
 
-        try (ServerSocket s = new ServerSocket(1025)) {
+        try (ServerSocket s = new ServerSocket(1027)) {
             Socket client = s.accept();
             InputStream inStream = client.getInputStream();
             OutputStream outStream = client.getOutputStream();
