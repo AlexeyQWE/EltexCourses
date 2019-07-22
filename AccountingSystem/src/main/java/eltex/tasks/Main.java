@@ -11,9 +11,9 @@ class Main {
 			FileReader fr = new FileReader ("resources/dev.csv");
 			Scanner scan = new Scanner(fr);
 
-			for (int j = 0; scan.hasNextLine(); ++j) {
+			for (int j = 0; scan.hasNextLine(); ++j) 
 	           	dev[j] = scan.nextLine();
-	        }
+	        
 	        fr.close();
 	     }
 	     catch (IOException error) {
@@ -24,9 +24,9 @@ class Main {
 	       FileReader fr = new FileReader ("resources/mng.csv");
 	       Scanner scan = new Scanner(fr);
 
-			for (int j = 0; scan.hasNextLine(); ++j) {
+			for (int j = 0; scan.hasNextLine(); ++j) 
 	           	mng[j] = scan.nextLine();
-	        }
+	        
 	        fr.close();
 	     }
 	     catch (IOException error) {
@@ -38,9 +38,9 @@ class Main {
 
 		try {
 			FileWriter fw = new FileWriter ("resources/dev_output_info.csv");
-			for (int i = 0; i < 3; ++i) {
-				fw.write(dev[i].toCSV(i) + '\n');
-			}
+			for (int i = 0; i < 3; ++i) 
+				fw.write(dev[i].toCSV() + '\n');
+			
 			fw.close();
 		}
 		catch (IOException error) {
@@ -49,9 +49,9 @@ class Main {
 
 	    try {
 			FileWriter fw = new FileWriter ("resources/mng_output_info.csv");
-			for (int i = 0; i < 3; ++i) {
-				fw.write(mng[i].toCSV(i) + '\n');
-			}
+			for (int i = 0; i < 3; ++i) 
+				fw.write(mng[i].toCSV() + '\n');
+			
 			fw.close();
 		}
 		catch (IOException error) {

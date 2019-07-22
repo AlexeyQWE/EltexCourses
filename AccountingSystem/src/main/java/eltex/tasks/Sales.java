@@ -3,20 +3,22 @@ package eltex.tasks;
 public class Sales {
 
 	private String title;
-	private Integer price;
+	private String price;
 
 
-	Sales (String title, int price) {
+	Sales () {}
+	
+	Sales (String title, String price) {
 
 		this.title = title;
 		this.price = price;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
