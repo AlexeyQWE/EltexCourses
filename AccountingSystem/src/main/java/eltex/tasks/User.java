@@ -17,7 +17,7 @@ public abstract class User implements CSV, Comparable <User>{
 	abstract public void setEmail (String arg);
 	abstract public void setPhone (String arg);
 
-	abstract public String toCSV(int i);
+	abstract public String toCSV();
 	abstract public void fromCSV(String str);
 	
 	 public int compareTo (User other) {

@@ -2,6 +2,6 @@ package eltex.tasks;
 
 interface CSV {
 
-	String toCSV(int i);
+	String toCSV();
 	void fromCSV(String str);
 }

@@ -2,12 +2,12 @@ package eltex.tasks;
 
 public class Manager extends User {
 
-	protected Sales [] sales = new Sales[3];
+	private Sales [] sales = new Sales[3];
 
 	{
-		sales[0] = new Sales("Telephone", 10000);
-		sales[1] = new Sales("Keyboard", 8000);
-		sales[2] = new Sales("headphone", 6000);
+		sales[0] = new Sales();
+		sales[1] = new Sales();
+		sales[2] = new Sales();
 	}
 
 	Manager () {};
@@ -32,14 +32,28 @@ public class Manager extends User {
 		return this.email;
 	}
 
-	public String getTitle (int i) {
+	public String getTitle () {
 
-		return this.sales[i].getTitle();
+		String [] arg = new String[3];
+
+		for (int i = 0; i < 3; ++i) 
+			arg[i] = this.sales[i].getTitle();
+		
+		String str = String.join("; ", arg);
+
+		return str;
 	}
 
-	public int getPrice (int i) {
+	public String getPrice () {
 
-		return this.sales[i].getPrice();
+		String [] arg = new String[3];
+
+		for (int i = 0; i < 3; ++i) 
+			arg[i] = this.sales[i].getPrice();
+		
+		String str = String.join("; ", arg);
+
+		return str;
 	}
 
 	public void setId (String arg) {
@@ -70,13 +84,19 @@ public class Manager extends User {
 
 	public void setPrice (String arg, int i) {
 
-		this.sales[i].setPrice(Integer.parseInt(arg));
+		this.sales[i].setPrice(arg);
 	}
 
-	public String toCSV(int i) {
+	public String toCSV() {
 
-		return this.id.toString() + " ; " + this.fio + " ; " + this.phone + " ; " + this.email + " ; " + this.sales[i].getTitle() + " ; "
-		+  this.sales[i].getPrice() + ";";
+		String [] arg = new String[2];
+
+		arg[0] = getTitle();
+		arg[1] = getPrice();
+
+		String str = String.join("; ", arg);
+
+		return this.id.toString() + "; " + this.fio + "; " + this.phone + "; " + this.email + "; " + str + "; ";
 	}
 
 	public void fromCSV(String str) {
@@ -86,5 +106,10 @@ public class Manager extends User {
 		setFio (arg [1]);
 		setPhone (arg [2]);
 		setEmail (arg [3]);
+
+		for (int i = 0, j = 4, k = 7; i < sales.length; ++i, ++j, ++k) {
+			setTitle(arg[j],i);
+			setPrice(arg[k],i);
+		}
 	}
 }

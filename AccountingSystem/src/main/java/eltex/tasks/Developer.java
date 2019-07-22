@@ -26,9 +26,11 @@ public class Developer extends User {
 		return this.email;
 	}
 
-	public String getLang (int i) {
+	public String getLang () {
 
-		return this.lang[i];
+		String str = String.join("; ", lang);
+
+		return str;
 	}
 		
 	public void setId (String arg) {
@@ -58,10 +60,11 @@ public class Developer extends User {
 	}
 
 
-	public String toCSV(int i) {
+	public String toCSV() {
 
-        String str = String.join(";", lang);
-		return this.id.toString() + " ; " + this.fio + " ; " + this.phone + " ; " + this.email + " ; " + str + " ; ";
+        String str = String.join("; ", lang);
+
+		return this.id.toString() + "; " + this.fio + "; " + this.phone + "; " + this.email + "; " + str + "; ";
 	}
 
 	public void fromCSV(String str) {

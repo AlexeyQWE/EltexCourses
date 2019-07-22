@@ -13,7 +13,7 @@ public class DUMP {
             Statement statement = connection.createStatement();
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO developer VALUES (" + dev[i].getId() + ", '" + dev[i].getFio() + "', '" + dev[i].getPhone() + "', '"
-                         + dev[i].getLang(i)+ "', '" + dev[i].getEmail() + "')");
+                         + dev[i].getLang()+ "', '" + dev[i].getEmail() + "')");
             }
             connection.close();
         } catch (SQLException e) {
@@ -25,7 +25,7 @@ public class DUMP {
             Statement statement = connection.createStatement();
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO manager VALUES (" + mng[i].getId() + ", '" + mng[i].getFio() + "', '" + mng[i].getPhone() + "', '"
-                        + mng[i].getEmail() +"' ,'" + mng[i].getTitle(i) + "', '" + mng[i].getPrice(i) + "')");
+                        + mng[i].getEmail() +"' ,'" + mng[i].getTitle() + "', '" + mng[i].getPrice() + "')");
             }
             connection.close();
         } catch (SQLException e) {
@@ -45,7 +45,11 @@ public class DUMP {
                 dev[i].setFio(resultSet.getString("fio"));
                 dev[i].setPhone(resultSet.getString("phone"));
                 dev[i].setEmail(resultSet.getString("email"));
-                dev[i].setLang(resultSet.getString("language"), i);
+                String str = resultSet.getString("language");
+                String [] arg = str.split(";");
+                
+                for (int j = 0; j < 3; ++j)      
+                    dev[i].setLang(arg[j], j);
             }
             connection.close();
         } catch (SQLException e) {
@@ -62,9 +66,15 @@ public class DUMP {
                 mng[i].setFio(resultSet.getString("fio"));
                 mng[i].setPhone(resultSet.getString("phone"));
                 mng[i].setEmail(resultSet.getString("email"));
-                mng[i].setTitle(resultSet.getString("title"), i);
-                mng[i].setTitle(resultSet.getString("price"), i);
-
+                String str = resultSet.getString("title");
+                String str1 = resultSet.getString("price");
+                String [] arg = str.split(";");
+                String [] arg1 = str1.split(";");
+                
+                for (int j = 0; j < 3; ++j) {      
+                    mng[i].setTitle(arg[j], j);
+                    mng[i].setPrice(arg1[j], j);
+                }
             }
             connection.close();
         } catch (SQLException e) {
