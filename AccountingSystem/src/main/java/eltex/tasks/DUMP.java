@@ -13,7 +13,7 @@ public class DUMP {
             Statement statement = connection.createStatement();
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO developer VALUES (" + dev[i].getId() + ", '" + dev[i].getFio() + "', '" + dev[i].getPhone() + "', '"
-                        + dev[i].getEmail() + "', '" + dev[i].getLang(i)+ "')");
+                         + dev[i].getLang(i)+ "', '" + dev[i].getEmail() + "')");
             }
             connection.close();
         } catch (SQLException e) {
@@ -44,7 +44,7 @@ public class DUMP {
                 dev[i].setId(resultSet.getString("id"));
                 dev[i].setFio(resultSet.getString("fio"));
                 dev[i].setPhone(resultSet.getString("phone"));
-                dev[i].setEmail(resultSet.getString("emali"));
+                dev[i].setEmail(resultSet.getString("email"));
                 dev[i].setLang(resultSet.getString("language"), i);
             }
             connection.close();

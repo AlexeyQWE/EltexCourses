@@ -82,7 +82,7 @@ class Main {
 		}
 
 		//DUMP.fromMySQL(dev,mng);
-		DUMP.toMySQL(dev, mng);
+		//DUMP.toMySQL(dev, mng);
 		wtire(dev, mng);
 
 		Task <Manager, Developer > [] task =  new Task[3]; 

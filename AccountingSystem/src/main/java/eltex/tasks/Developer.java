@@ -1,8 +1,10 @@
 package eltex.tasks;
 
+import java.util.Arrays;
+
 public class Developer extends User {
 
-	private String [] lang = {"Pyton", "Ruby", "Java"};
+	private String [] lang = new String[3];
 
 	public Integer getId () {
 
@@ -58,7 +60,8 @@ public class Developer extends User {
 
 	public String toCSV(int i) {
 
-		return this.id.toString() + " ; " + this.fio + " ; " + this.phone + " ; " + this.email + " ; " + this.lang[i] + " ; ";
+        String str = String.join(";", lang);
+		return this.id.toString() + " ; " + this.fio + " ; " + this.phone + " ; " + this.email + " ; " + str + " ; ";
 	}
 
 	public void fromCSV(String str) {
@@ -68,5 +71,8 @@ public class Developer extends User {
 		setFio (arg [1]);
 		setPhone (arg [2]);
 		setEmail (arg [3]);
+
+		for (int i = 0, j = 4; i < lang.length; ++i, ++j)
+		    setLang(arg[j],i);
 	}
 }
