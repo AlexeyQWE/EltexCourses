@@ -2,7 +2,6 @@
 build/
 resources/dev_output_info.csv
 resources/mng_output_info.csv
-resources/main_mng_output_info.csv
 .idea/
 gradle/
 gradlew
