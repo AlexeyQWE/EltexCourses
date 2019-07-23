@@ -59,7 +59,7 @@ class Main {
 	     }
 	}
 
-	public static void main(String args[]) throws SQLException {
+	public static void main(String args[]) throws SQLException, IOException {
 
 		String [] devs =  new String[3];
 		String [] mngs = new String[3];
@@ -83,7 +83,10 @@ class Main {
 
 		DUMP.fromMySQL(dev,mng);
 		DUMP.toMySQL(dev, mng);
+		DUMP.UNION();
+
 		wtire(dev, mng);
+
 
 		Task <Manager, Developer > [] task =  new Task[3]; 
 
