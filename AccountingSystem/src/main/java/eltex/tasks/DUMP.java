@@ -12,11 +12,11 @@ public class DUMP {
         Connection connection = null;
         Statement statement = null;
 
-        FileInputStream fis;
         Properties pr = new Properties();
 
-        fis = new FileInputStream("resources/config.properties");
+        FileInputStream fis = new FileInputStream("resources/config.properties");
         pr.load(fis);
+
         String host = pr.getProperty("db.host");
         String login = pr.getProperty("db.login");
         String password = pr.getProperty("db.password");
@@ -61,11 +61,11 @@ public class DUMP {
         Connection connection = null;
         Statement statement = null;
 
-        FileInputStream fis;
         Properties pr = new Properties();
 
-        fis = new FileInputStream("resources/config.properties");
+        FileInputStream fis = new FileInputStream("resources/config.properties");
         pr.load(fis);
+
         String host = pr.getProperty("db.host");
         String login = pr.getProperty("db.login");
         String password = pr.getProperty("db.password");
@@ -127,11 +127,11 @@ public class DUMP {
 
     public static void UNION() throws IOException {
 
-        FileInputStream fis;
         Properties pr = new Properties();
 
-        fis = new FileInputStream("resources/config.properties");
+        FileInputStream fis = new FileInputStream("resources/config.properties");
         pr.load(fis);
+        
         String host = pr.getProperty("db.host");
         String login = pr.getProperty("db.login");
         String password = pr.getProperty("db.password");
