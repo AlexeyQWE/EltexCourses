@@ -25,7 +25,7 @@ public class DUMP {
             connection = DriverManager.getConnection(host, login, password);
             connection.setAutoCommit(false);
             statement = connection.createStatement();
-            statement.execute("CREATE TABLE if not exists developer (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), language varchar(50))");
+            statement.execute("CREATE TABLE developer (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), language varchar(50))");
 
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO developer VALUES (" + dev[i].getId() + ", '" + dev[i].getFio() + "', '" + dev[i].getPhone() + "', '"
@@ -42,7 +42,7 @@ public class DUMP {
             connection = DriverManager.getConnection(host, login, password);
             connection.setAutoCommit(false);
             statement = connection.createStatement();
-            statement.execute("CREATE TABLE if not exists manager (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), title varchar(50), price varchar(50))");
+            statement.execute("CREATE TABLE manager (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), title varchar(50), price varchar(50))");
 
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO manager VALUES (" + mng[i].getId() + ", '" + mng[i].getFio() + "', '" + mng[i].getPhone() + "', '"
