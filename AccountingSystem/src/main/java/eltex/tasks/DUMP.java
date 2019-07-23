@@ -11,39 +11,46 @@ public class DUMP {
         Connection connection = null;
         Statement statement = null;
 
+        long startTime = System.nanoTime();
        try {
             connection = DriverManager.getConnection(DB_URL, "root", "AlexeyQWE123");
             connection.setAutoCommit(false);
             statement = connection.createStatement();
-            statement.execute("CREATE TABLE developer (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), language varchar(50))");
+           // statement.execute("CREATE TABLE developer (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), language varchar(50))");
 
+           for (int j = 0; j < 1001; ++j) {
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO developer VALUES (" + dev[i].getId() + ", '" + dev[i].getFio() + "', '" + dev[i].getPhone() + "', '"
                          + dev[i].getEmail()+ "', '" + dev[i].getLang() + "')");
-            }
+            }}
             connection.commit();
             connection.close();
         } catch (SQLException e) {
             connection.rollback();
             System.out.println(e.getMessage());
         }
+        long stopTime = System.nanoTime();
+        System.out.println("Commit "+ (stopTime - startTime) *  1e-9 + ".sec");
 
+        startTime = System.nanoTime();
         try {
             connection = DriverManager.getConnection(DB_URL, "root", "AlexeyQWE123");
-            connection.setAutoCommit(false);
+            //connection.setAutoCommit(false);
             statement = connection.createStatement();
-            statement.execute("CREATE TABLE manager (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), title varchar(50), price varchar(50))");
-
+           // statement.execute("CREATE TABLE manager (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), title varchar(50), price varchar(50))");
+            for (int j = 0; j < 1001; ++j) {
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO manager VALUES (" + mng[i].getId() + ", '" + mng[i].getFio() + "', '" + mng[i].getPhone() + "', '"
                         + mng[i].getEmail() +"' ,'" + mng[i].getTitle() + "', '" + mng[i].getPrice() + "')");
-            }
-            connection.commit();
+            }}
+           // connection.commit();
             connection.close();
         } catch (SQLException e) {
-            connection.rollback();
+           // connection.rollback();
             System.out.println(e.getMessage());
         }
+        stopTime = System.nanoTime();
+        System.out.println("NoCommit "+ (stopTime - startTime) *  1e-9 + ".sec");
     }
 
     public static void fromMySQL(Developer [] dev, Manager [] mng) throws SQLException {
