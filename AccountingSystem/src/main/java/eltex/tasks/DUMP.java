@@ -6,38 +6,55 @@ public class DUMP {
 
     private static final String DB_URL = "host";
 
-    public static void toMySQL(Developer [] dev, Manager [] mng)  {
+    public static void toMySQL(Developer [] dev, Manager [] mng) throws SQLException {
 
-        try {
-            Connection connection = DriverManager.getConnection(DB_URL, "root", "NOT_A_PASSWORD_ACTUALLY");
-            Statement statement = connection.createStatement();
+        Connection connection = null;
+        Statement statement = null;
+
+       try {
+            connection = DriverManager.getConnection(DB_URL, "root", "AlexeyQWE123");
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            statement.execute("CREATE TABLE developer (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), language varchar(50))");
+
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO developer VALUES (" + dev[i].getId() + ", '" + dev[i].getFio() + "', '" + dev[i].getPhone() + "', '"
-                         + dev[i].getLang()+ "', '" + dev[i].getEmail() + "')");
+                         + dev[i].getEmail()+ "', '" + dev[i].getLang() + "')");
             }
+            connection.commit();
             connection.close();
         } catch (SQLException e) {
+            connection.rollback();
             System.out.println(e.getMessage());
         }
 
         try {
-            Connection connection = DriverManager.getConnection(DB_URL, "root", "NOT_A_PASSWORD_ACTUALLY");
-            Statement statement = connection.createStatement();
+            connection = DriverManager.getConnection(DB_URL, "root", "AlexeyQWE123");
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            statement.execute("CREATE TABLE manager (id Integer(100), fio varchar(50), phone varchar(12), email varchar(50), title varchar(50), price varchar(50))");
+
             for (int i = 0; i < 3; ++i) {
                 statement.executeUpdate("INSERT INTO manager VALUES (" + mng[i].getId() + ", '" + mng[i].getFio() + "', '" + mng[i].getPhone() + "', '"
                         + mng[i].getEmail() +"' ,'" + mng[i].getTitle() + "', '" + mng[i].getPrice() + "')");
             }
+            connection.commit();
             connection.close();
         } catch (SQLException e) {
+            connection.rollback();
             System.out.println(e.getMessage());
         }
     }
 
-    public static void fromMySQL(Developer [] dev, Manager [] mng) {
+    public static void fromMySQL(Developer [] dev, Manager [] mng) throws SQLException {
+
+        Connection connection = null;
+        Statement statement = null;
 
         try {
-            Connection connection = DriverManager.getConnection(DB_URL, "root", "NOT_A_PASSWORD_ACTUALLY");
-            Statement statement = connection.createStatement();
+            connection = DriverManager.getConnection(DB_URL, "root", "AlexeyQWE123");
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM developer");
             resultSet.next();
             for (int i = 0; i < 3; ++i, resultSet.next()) {
@@ -51,14 +68,17 @@ public class DUMP {
                 for (int j = 0; j < 3; ++j)      
                     dev[i].setLang(arg[j], j);
             }
+            connection.commit();
             connection.close();
         } catch (SQLException e) {
+            connection.rollback();
             System.out.println(e.getMessage());
         }
 
        try {
-            Connection connection = DriverManager.getConnection(DB_URL, "root", "NOT_A_PASSWORD_ACTUALLY");
-            Statement statement = connection.createStatement();
+            connection = DriverManager.getConnection(DB_URL, "root", "AlexeyQWE123");
+             connection.setAutoCommit(false);
+            statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM manager");
            resultSet.next();
            for (int i = 0; i < 3; ++i, resultSet.next()) {
@@ -76,8 +96,10 @@ public class DUMP {
                     mng[i].setPrice(arg1[j], j);
                 }
             }
+            connection.commit();
             connection.close();
         } catch (SQLException e) {
+           connection.rollback();
             System.out.println(e.getMessage());
         }
     }
