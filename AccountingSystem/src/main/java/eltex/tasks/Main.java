@@ -81,8 +81,8 @@ class Main {
 			mng[i].fromCSV(mngs[i]);
 		}
 
-		//DUMP.fromMySQL(dev,mng);
-		//DUMP.toMySQL(dev, mng);
+		DUMP.fromMySQL(dev,mng);
+		DUMP.toMySQL(dev, mng);
 		wtire(dev, mng);
 
 		Task <Manager, Developer > [] task =  new Task[3]; 
