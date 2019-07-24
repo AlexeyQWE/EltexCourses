@@ -8,7 +8,7 @@ class Main {
 	public static void read (String [] dev, String [] mng)  {
 
 		try {
-			FileReader fr = new FileReader ("resources/dev.csv");
+			FileReader fr = new FileReader ("/home/user/EltexCourses/AccountingSystem/src/main/resources/dev.csv");
 			Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) 
@@ -21,7 +21,7 @@ class Main {
 	     }
 
 	   try {
-	       FileReader fr = new FileReader ("resources/mng.csv");
+	       FileReader fr = new FileReader ("/home/user/EltexCourses/AccountingSystem/src/main/resources/mng.csv");
 	       Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) 
@@ -37,7 +37,7 @@ class Main {
 	public static void wtire (Developer [] dev, Manager [] mng) {
 
 		try {
-			FileWriter fw = new FileWriter ("resources/dev_output_info.csv");
+			FileWriter fw = new FileWriter ("/home/user/EltexCourses/AccountingSystem/src/main/resources/dev_output_info.csv");
 			for (int i = 0; i < 3; ++i) 
 				fw.write(dev[i].toCSV() + '\n');
 			
@@ -48,7 +48,7 @@ class Main {
 	     }
 
 	    try {
-			FileWriter fw = new FileWriter ("resources/mng_output_info.csv");
+			FileWriter fw = new FileWriter ("/home/user/EltexCourses/AccountingSystem/src/main/resources/mng_output_info.csv");
 			for (int i = 0; i < 3; ++i) 
 				fw.write(mng[i].toCSV() + '\n');
 			
@@ -74,8 +74,6 @@ class Main {
 			dev[i].fromCSV(devs[i]);
 		}
 
-		System.out.println();
-
 		for (int i = 0; i < 3; ++i) {
 			mng[i] = new Manager();
 			mng[i].fromCSV(mngs[i]);
@@ -97,6 +95,18 @@ class Main {
 			task[i].setTitle("Data base testing");
 			task[i].setDescription("Fix bag in data base system");
 		}
+
+		Developer d = new Developer();
+		Class cl = d.getClass();
+		People pl = (People) cl.getAnnotation(People.class);
+
+		System.out.println(pl.gender());
+
+		Manager m = new Manager();
+		Class cl1 = m.getClass();
+		People pl1 = (People) cl1.getAnnotation(People.class);
+
+		System.out.println(pl1.gender());
 
 	}
 }

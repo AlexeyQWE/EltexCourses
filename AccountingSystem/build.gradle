@@ -10,6 +10,11 @@ dependencies {
 	compile fileTree(dir: 'libs', include: '*.jar')
 }
 
+dependencies {
+	compileOnly 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
+}
+
 run {
 	standardInput = System.in	
 }

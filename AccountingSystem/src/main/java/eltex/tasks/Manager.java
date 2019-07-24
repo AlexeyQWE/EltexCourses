@@ -1,5 +1,6 @@
 package eltex.tasks;
 
+@People(gender = "woman")
 public class Manager extends User {
 
 	private Sales [] sales = new Sales[3];
@@ -11,26 +12,6 @@ public class Manager extends User {
 	}
 
 	Manager () {};
-
-	public Integer getId () {
-
-		return this.id;
-	}
-
-	public String getFio () {
-
-		return this.fio;
-	}
-
-	public String getPhone () {
-
-		return this.phone;
-	}
-
-	public String getEmail () {
-
-		return this.email;
-	}
 
 	public String getTitle () {
 
@@ -56,35 +37,14 @@ public class Manager extends User {
 		return str;
 	}
 
-	public void setId (String arg) {
+	public void setTitle (String title, int i) {
 
-		this.id = Integer.valueOf(arg);
-	}
-	
-
-	public void setFio (String arg) {
-
-		this.fio = arg;
+		this.sales[i].setTitle(title);
 	}
 
-	public void setPhone (String arg) {
+	public void setPrice (String price, int i) {
 
-		this.phone = arg;
-	}
-
-	public void setEmail (String arg) {
-
-		this.email = arg;
-	}
-
-	public void setTitle (String arg, int i) {
-
-		this.sales[i].setTitle(arg);
-	}
-
-	public void setPrice (String arg, int i) {
-
-		this.sales[i].setPrice(arg);
+		this.sales[i].setPrice(price);
 	}
 
 	public String toCSV() {
@@ -102,7 +62,7 @@ public class Manager extends User {
 	public void fromCSV(String str) {
 
 		String [] arg = str.split(";");
-		setId (arg [0]);
+		setId (Integer.valueOf(arg [0]));
 		setFio (arg [1]);
 		setPhone (arg [2]);
 		setEmail (arg [3]);

@@ -1,68 +1,70 @@
 package eltex.tasks;
 
-import java.util.Arrays;
+@People(gender = "man")
 
 public class Developer extends User {
 
-	private String [] lang = new String[3];
-
-	public Integer getId () {
-
-		return this.id;
+	private Languages [] lang = new Languages[3];
+	{
+		for (int i = 0; i < 3; ++i)
+			lang[i] = new Languages();
 	}
 
-	public String getFio () {
+	public String getLangTitle () {
 
-		return this.fio;
-	}
+		String [] arg = new String[3];
 
-	public String getPhone () {
+		for (int i = 0; i < 3; ++i)
+			arg[i] = this.lang[i].getTitle();
 
-		return this.phone;
-	}
-
-	public String getEmail () {
-
-		return this.email;
-	}
-
-	public String getLang () {
-
-		String str = String.join("; ", lang);
+		String str = String.join("; ", arg);
 
 		return str;
 	}
-		
-	public void setId (String arg) {
 
-		this.id = Integer.valueOf(arg);
-	}
-	
+	public String getLangTitle (int i) {
 
-	public void setFio (String arg) {
-
-		this.fio = arg;
+		return  this.lang[i].getTitle();
 	}
 
-	public void setPhone (String arg) {
+	public void setLangTitle (String title, int i) {
 
-		this.phone = arg;
+		this.lang[i].setTitle(title);
 	}
 
-	public void setEmail (String arg) {
+	public void setLangId (Integer id, int i) {
 
-		this.email = arg;
+		this.lang[i].setId(id);
 	}
 
-	public void setLang (String arg, int i) {
+	public String getLangId () {
 
-		this.lang[i] = arg;
+		String [] arg = new String[3];
+		Integer tmp;
+
+		for (int i = 0; i < 3; ++i) {
+			tmp = this.lang[i].getId();
+			arg[i] = tmp.toString();
+		}
+
+		String str = String.join("; ", arg);
+
+		return str;
 	}
 
+	public Integer getLangId (int i) {
+
+		return  this.lang[i].getId();
+	}
 
 	public String toCSV() {
 
-        String str = String.join("; ", lang);
+		String [] arg = new String[2];
+
+		arg[0] = getLangTitle();
+		arg[1] = getLangId();
+
+		String str = String.join("; ", arg);
 
 		return this.id.toString() + "; " + this.fio + "; " + this.phone + "; " + this.email + "; " + str + "; ";
 	}
@@ -70,12 +72,14 @@ public class Developer extends User {
 	public void fromCSV(String str) {
 
 		String [] arg = str.split(";");
-		setId (arg [0]);
+		setId (Integer.valueOf(arg [0]));
 		setFio (arg [1]);
 		setPhone (arg [2]);
 		setEmail (arg [3]);
 
-		for (int i = 0, j = 4; i < lang.length; ++i, ++j)
-		    setLang(arg[j],i);
+		for (int i = 0, j = 4, k = 7; i < lang.length; ++i, ++j, ++k) {
+			setLangTitle(arg[j],i);
+			setLangId(Integer.valueOf(arg[k]), i);
+		}
 	}
 }
