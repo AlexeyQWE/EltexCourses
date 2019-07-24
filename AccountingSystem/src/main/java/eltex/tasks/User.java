@@ -1,21 +1,22 @@
 package eltex.tasks;
 
+import lombok.*;
+
+@ToString(exclude = "id", includeFieldNames = true)
+
 public abstract class User implements CSV, Comparable <User>{
 
+	@Getter @Setter
 	protected Integer id;
+
+	@Getter @Setter
 	protected String fio;
+
+	@Getter @Setter
 	protected String phone;
-	protected String email; 
 
-	abstract public Integer getId ();
-	abstract public String getFio ();
-	abstract public String getPhone();
-	abstract public String getEmail ();
-
-	abstract public void setId (String arg);
-	abstract public void setFio (String arg);
-	abstract public void setEmail (String arg);
-	abstract public void setPhone (String arg);
+	@Getter @Setter
+	protected String email;
 
 	abstract public String toCSV();
 	abstract public void fromCSV(String str);
