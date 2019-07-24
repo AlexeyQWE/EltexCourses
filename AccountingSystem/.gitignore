@@ -1,7 +1,7 @@
 .gradle/
 build/
-/home/user/EltexCourses/AccountingSystem/src/main/resources/dev_output_info.csv
-/home/user/EltexCourses/AccountingSystem/src/main/resources/mng_output_info.csv
+src/main/resources/dev_output_info.csv
+src/main/resources/mng_output_info.csv
 .idea/
 gradle/
 gradlew
