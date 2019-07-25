@@ -5,58 +5,41 @@ import java.util.Scanner;
 
 class Main {
 
-	public static void read (String [] dev, String [] mng)  {
+	public static void read (String [] dev, String [] mng) throws IOException  {
 
-		try {
-			FileReader fr = new FileReader ("src/main/resources/dev.csv");
-			Scanner scan = new Scanner(fr);
+		FileReader fr;
+		Scanner scan;
 
-			for (int j = 0; scan.hasNextLine(); ++j) 
-	           	dev[j] = scan.nextLine();
-	        
-	        fr.close();
-	     }
-	     catch (IOException error) {
-	     	System.err.print(error.getMessage()); 
-	     }
+		fr = new FileReader ("src/main/resources/dev.csv");
+		scan = new Scanner(fr);
 
-	   try {
-	       FileReader fr = new FileReader ("src/main/resources/mng.csv");
-	       Scanner scan = new Scanner(fr);
+		for (int j = 0; scan.hasNextLine(); ++j)
+			dev[j] = scan.nextLine();
+		fr.close();
 
-			for (int j = 0; scan.hasNextLine(); ++j) 
-	           	mng[j] = scan.nextLine();
-	        
-	        fr.close();
-	     }
-	     catch (IOException error) {
-	     	System.err.print(error.getMessage()); 
-	     }
+		fr = new FileReader ("src/main/resources/mng.csv");
+		scan = new Scanner(fr);
+
+		for (int j = 0; scan.hasNextLine(); ++j)
+			mng[j] = scan.nextLine();
+		fr.close();
 	}
 
-	public static void wtire (Developer [] dev, Manager [] mng) {
+	public static void wtire (Developer [] dev, Manager [] mng) throws IOException {
 
-		try {
-			FileWriter fw = new FileWriter ("src/main/resources/dev_output_info.csv");
-			for (int i = 0; i < 3; ++i) 
-				fw.write(dev[i].toCSV() + '\n');
-			
-			fw.close();
-		}
-		catch (IOException error) {
-	     	System.err.print(error.getMessage()); 
-	     }
+		FileWriter fw;
 
-	    try {
-			FileWriter fw = new FileWriter ("src/main/resources/mng_output_info.csv");
-			for (int i = 0; i < 3; ++i) 
-				fw.write(mng[i].toCSV() + '\n');
-			
-			fw.close();
-		}
-		catch (IOException error) {
-	     	System.err.print(error.getMessage()); 
-	     }
+		fw = new FileWriter ("src/main/resources/dev_output_info.csv");
+
+		for (int i = 0; i < 3; ++i)
+			fw.write(dev[i].toCSV() + '\n');
+		fw.close();
+
+		fw = new FileWriter ("src/main/resources/mng_output_info.csv");
+
+		for (int i = 0; i < 3; ++i)
+			fw.write(mng[i].toCSV() + '\n');
+		fw.close();
 	}
 
 	public static void main(String args[]) throws SQLException, IOException {
