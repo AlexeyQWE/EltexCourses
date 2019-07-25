@@ -27,16 +27,6 @@ public class Developer extends User {
 		return  this.lang[i].getTitle();
 	}
 
-	public void setLangTitle (String title, int i) {
-
-		this.lang[i].setTitle(title);
-	}
-
-	public void setLangId (Integer id, int i) {
-
-		this.lang[i].setId(id);
-	}
-
 	public String getLangId () {
 
 		String [] arg = new String[3];
@@ -57,12 +47,22 @@ public class Developer extends User {
 		return  this.lang[i].getId();
 	}
 
+	public void setLangTitle (String title, int i) {
+
+		this.lang[i].setTitle(title);
+	}
+
+	public void setLangId (Integer id, int i) {
+
+		this.lang[i].setId(id);
+	}
+
 	public String toCSV() {
 
 		String [] arg = new String[2];
 
-		arg[0] = getLangTitle();
-		arg[1] = getLangId();
+		arg[0] =getLangId();
+		arg[1] = getLangTitle();
 
 		String str = String.join("; ", arg);
 
@@ -78,8 +78,8 @@ public class Developer extends User {
 		setEmail (arg [3]);
 
 		for (int i = 0, j = 4, k = 7; i < lang.length; ++i, ++j, ++k) {
-			setLangTitle(arg[j],i);
-			setLangId(Integer.valueOf(arg[k]), i);
+			setLangTitle(arg[k],i);
+			setLangId(Integer.valueOf(arg[j]), i);
 		}
 	}
 }
