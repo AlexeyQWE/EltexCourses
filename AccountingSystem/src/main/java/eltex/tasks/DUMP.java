@@ -172,6 +172,26 @@ public class DUMP {
             connection = DriverManager.getConnection(host, login, password);
             connection.setAutoCommit(false);
             statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM languages");
+            resultSet.next();
+
+            for (int i = 0; i < 3; ++i) {
+                for (int j = 0; j < 3; ++j, resultSet.next()) {
+                    dev[i].setLangId(resultSet.getInt("id"), j);
+                    dev[i].setLangTitle(resultSet.getString("language"), j);
+                }
+            }
+            connection.commit();
+            connection.close();
+        } catch (SQLException e) {
+            connection.rollback();
+            System.err.println(e.getMessage());
+        }
+
+        try {
+            connection = DriverManager.getConnection(host, login, password);
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM manager");
             resultSet.next();
 
@@ -180,6 +200,27 @@ public class DUMP {
                 mng[i].setFio(resultSet.getString("fio"));
                 mng[i].setPhone(resultSet.getString("phone"));
                 mng[i].setEmail(resultSet.getString("email"));
+            }
+            connection.commit();
+            connection.close();
+        } catch (SQLException e) {
+            connection.rollback();
+            System.err.println(e.getMessage());
+        }
+
+        try {
+            connection = DriverManager.getConnection(host, login, password);
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM sales");
+            resultSet.next();
+
+            for (int i = 0; i < 3; ++i) {
+                for (int j = 0; j < 3; ++j, resultSet.next()) {
+                    mng[i].setSaleId(resultSet.getInt("id"), j);
+                    mng[i].setTitle(resultSet.getString("title"), j);
+                    mng[i].setPrice(resultSet.getString("price"), j);
+                }
             }
             connection.commit();
             connection.close();
