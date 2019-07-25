@@ -6,9 +6,8 @@ public class Manager extends User {
 	private Sales [] sales = new Sales[3];
 
 	{
-		sales[0] = new Sales();
-		sales[1] = new Sales();
-		sales[2] = new Sales();
+		for (int i = 0; i < 3; ++i)
+			sales[i] = new Sales();
 	}
 
 	Manager () {};
@@ -25,6 +24,11 @@ public class Manager extends User {
 		return str;
 	}
 
+	public String getTitle (int i) {
+
+		return  this.sales[i].getTitle();
+	}
+
 	public String getPrice () {
 
 		String [] arg = new String[3];
@@ -37,6 +41,31 @@ public class Manager extends User {
 		return str;
 	}
 
+	public String getPrice (int i) {
+
+		return  this.sales[i].getPrice();
+	}
+
+	public String getSaleId () {
+
+		String [] arg = new String[3];
+		Integer tmp;
+
+		for (int i = 0; i < 3; ++i) {
+			tmp = this.sales[i].getId();
+			arg[i] = tmp.toString();
+		}
+
+		String str = String.join("; ", arg);
+
+		return str;
+	}
+
+	public Integer getSaleId (int i) {
+
+		return  this.sales[i].getId();
+	}
+
 	public void setTitle (String title, int i) {
 
 		this.sales[i].setTitle(title);
@@ -47,12 +76,18 @@ public class Manager extends User {
 		this.sales[i].setPrice(price);
 	}
 
+	public void setSaleId (Integer id, int i) {
+
+		this.sales[i].setId(id);
+	}
+
 	public String toCSV() {
 
-		String [] arg = new String[2];
+		String [] arg = new String[3];
 
-		arg[0] = getTitle();
-		arg[1] = getPrice();
+		arg[0] = getSaleId();
+		arg[1] = getTitle();
+		arg[2] = getPrice();
 
 		String str = String.join("; ", arg);
 
@@ -67,9 +102,10 @@ public class Manager extends User {
 		setPhone (arg [2]);
 		setEmail (arg [3]);
 
-		for (int i = 0, j = 4, k = 7; i < sales.length; ++i, ++j, ++k) {
-			setTitle(arg[j],i);
-			setPrice(arg[k],i);
+		for (int i = 0, j = 4, k = 7, q = 10; i < sales.length; ++i, ++j, ++k, ++q) {
+			setSaleId(Integer.valueOf(arg[j]),i);
+			setTitle(arg[k],i);
+			setPrice(arg[q],i);
 		}
 	}
 }

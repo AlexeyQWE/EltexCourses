@@ -14,7 +14,7 @@ public class DUMP {
 
         Properties pr = new Properties();
 
-        FileInputStream fis = new FileInputStream("/home/user/EltexCourses/AccountingSystem/src/main/resources/config.properties");
+        FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
         pr.load(fis);
 
         String host = pr.getProperty("db.host");
@@ -59,12 +59,12 @@ public class DUMP {
             connection = DriverManager.getConnection(host, login, password);
             connection.setAutoCommit(false);
             statement = connection.createStatement();
-            statement.execute("CREATE TABLE language (id Integer(100), languages varchar(50))");
+            statement.execute("CREATE TABLE languages (id Integer(100), language varchar(50))");
             connection.commit();
 
             for (int i = 0; i < 3; ++i) {
                 for (int j = 0; j < 3; ++j) {
-                    statement.executeUpdate("INSERT INTO language VALUES (" + dev[i].getLangId(j) + ", '" + dev[i].getLangTitle(j) + "')");
+                    statement.executeUpdate("INSERT INTO languages VALUES (" + dev[i].getLangId(j) + ", '" + dev[i].getLangTitle(j) + "')");
                 }
             }
             connection.commit();
@@ -93,6 +93,45 @@ public class DUMP {
             connection.rollback();
             System.err.println(e.getMessage());
         }
+
+        try {
+            connection = DriverManager.getConnection(host, login, password);
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            statement.execute("CREATE TABLE sales (id Integer(100), title varchar(50), price varchar(50))");
+            connection.commit();
+
+            for (int i = 0; i < 3; ++i) {
+                for (int j = 0; j < 3; ++j) {
+                    statement.executeUpdate("INSERT INTO sales VALUES (" + mng[i].getSaleId(j) + ", '" + mng[i].getTitle(j) +"', '" + mng[i].getPrice(j) + "')");
+                }
+            }
+            connection.commit();
+            connection.close();
+        } catch (SQLException e) {
+            connection.rollback();
+            System.err.println(e.getMessage());
+        }
+
+        try {
+            connection = DriverManager.getConnection(host, login, password);
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            statement.execute("CREATE TABLE id_sale_mng (id Integer(100), id_mng Integer(100), id_sale Integer(100))");
+
+            int k = 1;
+            for (int i = 0; i < 3; ++i) {
+                for (int j = 0; j < 3; ++j) {
+                    statement.executeUpdate("INSERT INTO id_sale_mng VALUES ("+ k +", "+ mng[i].getId() + ", " +  mng[i].getSaleId(j) + ")");
+                    ++k;
+                }
+            }
+            connection.commit();
+            connection.close();
+        } catch (SQLException e) {
+            connection.rollback();
+            System.err.println(e.getMessage());
+        }
     }
 
     public static void fromMySQL(Developer[] dev, Manager[] mng) throws SQLException, IOException {
@@ -102,7 +141,7 @@ public class DUMP {
 
         Properties pr = new Properties();
 
-        FileInputStream fis = new FileInputStream("/home/user/EltexCourses/AccountingSystem/src/main/resources/config.properties");
+        FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
         pr.load(fis);
 
         String host = pr.getProperty("db.host");
@@ -121,12 +160,6 @@ public class DUMP {
                 dev[i].setFio(resultSet.getString("fio"));
                 dev[i].setPhone(resultSet.getString("phone"));
                 dev[i].setEmail(resultSet.getString("email"));
-
-               /* String str = resultSet.getString("language");
-                String[] arg = str.split(";");
-
-                for (int j = 0; j < 3; ++j)
-                    dev[i].setLang(arg[j], j);*/
             }
             connection.commit();
             connection.close();
@@ -147,16 +180,6 @@ public class DUMP {
                 mng[i].setFio(resultSet.getString("fio"));
                 mng[i].setPhone(resultSet.getString("phone"));
                 mng[i].setEmail(resultSet.getString("email"));
-
-                /*String str = resultSet.getString("title");
-                String str1 = resultSet.getString("price");
-                String[] arg = str.split(";");
-                String[] arg1 = str1.split(";");
-
-                for (int j = 0; j < 3; ++j) {
-                    mng[i].setTitle(arg[j], j);
-                    mng[i].setPrice(arg1[j], j);
-                }*/
             }
             connection.commit();
             connection.close();
@@ -170,7 +193,7 @@ public class DUMP {
 
         Properties pr = new Properties();
 
-        FileInputStream fis = new FileInputStream("/home/user/EltexCourses/AccountingSystem/src/main/resources/config.properties");
+        FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
         pr.load(fis);
         
         String host = pr.getProperty("db.host");

@@ -8,7 +8,7 @@ class Main {
 	public static void read (String [] dev, String [] mng)  {
 
 		try {
-			FileReader fr = new FileReader ("/home/user/EltexCourses/AccountingSystem/src/main/resources/dev.csv");
+			FileReader fr = new FileReader ("src/main/resources/dev.csv");
 			Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) 
@@ -21,7 +21,7 @@ class Main {
 	     }
 
 	   try {
-	       FileReader fr = new FileReader ("/home/user/EltexCourses/AccountingSystem/src/main/resources/mng.csv");
+	       FileReader fr = new FileReader ("src/main/resources/mng.csv");
 	       Scanner scan = new Scanner(fr);
 
 			for (int j = 0; scan.hasNextLine(); ++j) 
@@ -37,7 +37,7 @@ class Main {
 	public static void wtire (Developer [] dev, Manager [] mng) {
 
 		try {
-			FileWriter fw = new FileWriter ("/home/user/EltexCourses/AccountingSystem/src/main/resources/dev_output_info.csv");
+			FileWriter fw = new FileWriter ("src/main/resources/dev_output_info.csv");
 			for (int i = 0; i < 3; ++i) 
 				fw.write(dev[i].toCSV() + '\n');
 			
@@ -48,7 +48,7 @@ class Main {
 	     }
 
 	    try {
-			FileWriter fw = new FileWriter ("/home/user/EltexCourses/AccountingSystem/src/main/resources/mng_output_info.csv");
+			FileWriter fw = new FileWriter ("src/main/resources/mng_output_info.csv");
 			for (int i = 0; i < 3; ++i) 
 				fw.write(mng[i].toCSV() + '\n');
 			
@@ -79,9 +79,9 @@ class Main {
 			mng[i].fromCSV(mngs[i]);
 		}
 
-		DUMP.fromMySQL(dev,mng);
-		DUMP.toMySQL(dev, mng);
-		DUMP.UNION();
+		//DUMP.fromMySQL(dev,mng);
+		//DUMP.toMySQL(dev, mng);
+		//DUMP.UNION();
 
 		wtire(dev, mng);
 
