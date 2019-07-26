@@ -1,6 +1,6 @@
 package eltex.tasks;
 
-@People(gender = "man")
+@People(gender = "male")
 
 public class Developer extends User {
 

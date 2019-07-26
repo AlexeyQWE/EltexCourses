@@ -1,6 +1,6 @@
 package eltex.tasks;
 
-@People(gender = "woman")
+@People(gender = "female")
 public class Manager extends User {
 
 	private Sales [] sales = new Sales[3];
