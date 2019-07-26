@@ -40,8 +40,6 @@ public class Main {
         user1.setAddress(address);
         user2.setAddress(address);
         address.setTenants(users);
-        address.setTenants(users);
-
 
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
         SessionFactory sessionFactory = null;
