@@ -62,9 +62,9 @@ class Main {
 			mng[i].fromCSV(mngs[i]);
 		}
 
-		//DUMP.fromMySQL(dev,mng);
-		//DUMP.toMySQL(dev, mng);
-		//DUMP.UNION();
+		DUMP.fromMySQL(dev,mng);
+		DUMP.toMySQL(dev, mng);
+		DUMP.UNION();
 
 		wtire(dev, mng);
 
