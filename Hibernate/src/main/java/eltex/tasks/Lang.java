@@ -20,5 +20,5 @@ public class Lang {
 
 	@ManyToMany(mappedBy = "lang", fetch = FetchType.EAGER)
     @Getter @Setter
-    private List <User> users;
+    private Collection <User> users;
 }
