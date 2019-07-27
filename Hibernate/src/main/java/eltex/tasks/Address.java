@@ -1,6 +1,6 @@
 package eltex.tasks;
-import lombok.*;
 
+import lombok.*;
 import javax.persistence.*;
 import java.util.*;
 
@@ -26,5 +26,5 @@ public class Address {
 
     @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
     @Getter @Setter
-    private Collection<User> tenants;
+    private Collection <User> tenants;
 }
