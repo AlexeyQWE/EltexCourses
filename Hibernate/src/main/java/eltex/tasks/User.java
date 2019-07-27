@@ -25,4 +25,9 @@ public class User {
     @JoinColumn(name = "address_id")
     @Getter @Setter
     private Address address;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinColumn(name = "language_id")
+    @Getter @Setter
+    private List <Lang> lang;
 }
