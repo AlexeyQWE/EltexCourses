@@ -22,13 +22,13 @@ public class Main {
         Passport passport2 = new Passport();
         Address address = new Address();
 
-        List <Lang> langs = new List <Lang> ();
+        Collection <Lang> langs = new ArrayList <Lang> ();
 
         langs.add(new Lang ());
         langs.add(new Lang ());
 
-        Lang lang1 = langs.get(0);
-        Lang lang2 = langs.get(1);
+        Lang lang1 = ((ArrayList <Lang>) langs).get(0);
+        Lang lang2 = ((ArrayList <Lang>) langs).get(1);
 
         user1.setFio("Kozhuhovskiy Gennady");
         user2.setFio("Ramus Eugene");

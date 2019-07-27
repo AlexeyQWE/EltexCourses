@@ -29,5 +29,5 @@ public class User {
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinColumn(name = "language_id")
     @Getter @Setter
-    private List <Lang> lang;
+    private Collection <Lang> lang;
 }
