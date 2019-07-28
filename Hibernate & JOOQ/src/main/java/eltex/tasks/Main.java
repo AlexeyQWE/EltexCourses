@@ -59,6 +59,8 @@ public class Main {
         lang1.setUsers(users);
         lang2.setUsers(users);
 
+        //Hibernate
+
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
         SessionFactory sessionFactory = null;
 
@@ -81,5 +83,61 @@ public class Main {
         session.save(lang2);
         session.getTransaction().commit();
         session.close();
+
+        //JOOQ
+
+        Properties properties = new Properties();
+
+        FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
+        properties.load(fis);
+        
+        Connection connection = DriverManager.getConnection(properties.getProperty("db.host"),
+            properties.getProperty("db.login"),
+            properties.getProperty("db.password"));
+
+        DSLContext context = DSL.using(connection, SQLDialect.MYSQL);
+        
+        context.insertInto(test.users)
+            .set(test.users.id, 10)
+            .set(test.users.fio, "Alexey Vashov")
+            .execute();
+
+        Result<User> users = context.selectFrom(test.users).fetch();
+
+        for (User user : users) 
+            System.out.println(user.getFio());
+
+        context.insertInto(test.passports)
+            .set(test.passports.id, 10)
+            .set(test.passports.series, "42 02")
+            .execute();
+
+        Result<Passport> pass = context.selectFrom(test.passports).fetch();
+
+        for (Address pas : pass) 
+            System.out.println(pas.getSeries());
+
+
+        context.insertInto(test.address)
+            .set(test.address.id, 10)
+            .set(test.address.city, "Moscow")
+            .execute();
+
+        Result<Address> addrs = context.selectFrom(test.address).fetch();
+
+        for (Address addr : addrs) 
+            System.out.println(addr.getCity());
+
+         context.insertInto(test.languages)
+            .set(test.languages.id, 10)
+            .set(test.languages.title, "C")
+            .execute();
+
+        Result<Lang> lngs = context.selectFrom(test.languages).fetch();
+
+        for (Address lng : lngs) 
+            System.out.println(lng.getTitle());
+
+        connection.close();
     }
 }
