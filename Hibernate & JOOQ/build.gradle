@@ -1,0 +1,78 @@
+apply plugin: "java"
+apply plugin: "application"
+mainClassName  = "eltex.tasks.Main"
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0+'
+	compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
+}
+
+dependencies {
+	compile 'mysql:mysql-connector-java:8.0.17'
+	implementation 'org.hibernate:hibernate-core:5.4.3.Final'
+}
+
+repositories {
+    jcenter()
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += [ "--release", "8" ]
+}
+
+dependencies {
+    compile 'org.jooq:jooq'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
+    jooqRuntime 'mysql:mysql-connector-java:+'
+}
+
+jooq {
+    Properties properties = new Properties()
+    properties.load(project.file("config.properties").newDataInputStream())
+    version = "3.11.11"
+    sample(sourceSets.main) {
+        jdbc {
+            driver = "com.mysql.jdbc.Driver"
+            url = properties.getProperty("db.host")
+            user = properties.getProperty("db.login")
+            password = properties.getProperty("db.password")
+        }
+        generator {
+            name = "org.jooq.codegen.DefaultGenerator"
+            database {
+                name = "org.jooq.meta.mysql.MySQLDatabase"
+                inputSchema = "testjava"
+                outputSchemaToDefault = true
+            }
+            generate {
+                relations = true
+                deprecated = false
+                records = true
+                immutablePojos = true
+                indexes = false
+                relations = false
+
+                globalObjectReferences = false
+                globalCatalogReferences = false
+                globalSchemaReferences = false
+            }
+            target {
+                packageName = "ru.eltex.jooq.database"
+                directory = "src/main/java"
+            }
+        }
+    }
+}
+
+run {
+	standardInput = System.in	
+}
