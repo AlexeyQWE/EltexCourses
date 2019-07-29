@@ -1,0 +1,15 @@
+apply plugin: "java"
+apply plugin: "application"
+mainClassName  = "eltex.tasks.MongoDB"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.10.2'
+}
+
+run {
+    standardInput = System.in
+}
