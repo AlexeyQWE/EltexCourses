@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="Hibernate.main" target="11" />
+      <module name="Hibernate.test" target="11" />
+      <module name="Hibernate_&amp;_JOOQ.main" target="11" />
+      <module name="Hibernate_&amp;_JOOQ.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
