@@ -4,7 +4,7 @@ import lombok.*;;
 import javax.persistence.*;
 
 @Entity
-public class UserSQL {
+public class User {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
@@ -12,9 +12,10 @@ public class UserSQL {
     @Getter @Setter private String fio;
     @Getter @Setter private String phone;
 
-    UserSQL () {}
+    User () {}
 
-    UserSQL(String fio, String phone) {
+    User(Integer id, String fio, String phone) {
+        this.id = id;
         this.fio = fio;
         this.phone = phone;
 
