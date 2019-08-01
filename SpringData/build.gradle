@@ -26,6 +26,12 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
 }
+
+dependencies {
+    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.+'
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
 run {
     standardInput = System.in
 }
