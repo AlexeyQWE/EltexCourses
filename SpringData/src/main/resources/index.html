@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>CallCenter</title>
+        <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <style>
+         hr {
+            border: none;
+            color: red;
+            background-color: black;
+            height: 2px;
+           }
+        .field {
+            text-align:center;
+            margin-left: 290px;
+            color: black;
+            font-size: 9pt;
+          }
+    </style>
+    <script type=«text/javascript»>
+        $(document).ready(function(){
+            $.get(«/get_users»,
+                function(data){
+                     console.log(data);
+                     $(«.users»).html(data[0].fio);
+                }
+             );
+        });
+</script>
+    <body>
+    <h1 align="center">Data Base</h1>
+    <div  class="container">
+        <hr >
+        <div class="row">
+            <div style="border-right:2px solid black" class="col-md-6">
+                <center> Clients List </center></div>
+            <div class="col-md-6"><center>Clinets Id</center> </div>
+        </div>
+    </div>
+    <div class="field">
+        <br/><input class="field" type = "text"/><br/>
+        <button style="background: yellow; color: black;  margin-left: 290px;"  type="button" class="btn btn-danger" >find</button>
+    </div>
+  </body>
+</html>
+
+
