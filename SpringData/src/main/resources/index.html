@@ -22,16 +22,30 @@
             font-size: 9pt;
           }
     </style>
-    <script type=«text/javascript»>
+      <script type="text/javascript">
         $(document).ready(function(){
-            $.get(«/get_users»,
+            $.get("/get_users",
                 function(data){
-                     console.log(data);
-                     $(«.users»).html(data[0].fio);
+                    var str = null;
+                    for(var i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                        str += data[i].id + ")" + data[i].fio + "<br>";
+                    }
+                    $(".users").html(str);
                 }
-             );
+            );
         });
-</script>
+        function UserInfo(event) {
+            $.get("/get_user/" + document.getElementById("id").value,
+                function(data){
+                    var str = null  ;
+                    console.log(data);
+                    str += "fio: " + data.fio + ", phone:" + data.phone + "<br>";
+                    $(".user").html(str);
+                }
+            );
+        }
+    </script>
     <body>
     <h1 align="center">Data Base</h1>
     <div  class="container">
@@ -44,7 +58,8 @@
     </div>
     <div class="field">
         <br/><input class="field" type = "text"/><br/>
-        <button style="background: yellow; color: black;  margin-left: 290px;"  type="button" class="btn btn-danger" >find</button>
+        <button style="background: yellow; color: black;  margin-left: 290px;"  type="button" class="btn btn-danger" onclick="UserInfo()">
+                find</button>
     </div>
   </body>
 </html>

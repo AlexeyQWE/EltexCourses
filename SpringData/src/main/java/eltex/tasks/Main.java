@@ -56,7 +56,7 @@ public class Main {
                             ArrayList<User> users = new ArrayList<>();
                             CrudRepository.findAll().forEach(users::add);
                             output = mapper.writeValueAsString(users);
-                            output = "HTTP/1.1 200 OK\n\n" + output;
+                            output = "HTTP/1.1 200 OK\nContent-Type:application/json\n\n" + output;
                         }
 
                         else if (tokens[1].equals("get_user") && tokens.length > 2) {
@@ -64,7 +64,14 @@ public class Main {
                             ObjectMapper mapper = new ObjectMapper();
                             User u = CrudRepository.findById(id).get();
                             output = mapper.writeValueAsString(u);
-                            output = "HTTP/1.1 200 OK\n\n" + output;
+                            output = "HTTP/1.1 200 OK\nContent-Type:application/json\n\n" + output;
+                        }
+                        else if (tokens[1].equals("index.html") && tokens.length == 2) {
+                            String path = "src/main/resources/index.html";
+                            File file = new File(path);
+                            Scanner sc = new Scanner(file).useDelimiter("\0");
+                            String html_page = sc.next();
+                            output = "HTTP/1.1 200 OK\nContent-Length:" + html_page.length() + "\n\n" + html_page;
                         }
                         else {
                             output = "HTTP/1.1 404";
