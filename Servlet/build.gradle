@@ -33,6 +33,7 @@ dependencies {
             "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6",
             "org.apache.tomcat.embed:tomcat-embed-jasper:9.0.22"
 }
+
 task deployToTomcat(type: Copy) {
     from war.archivePath
     into "/var/lib/tomcat9/webapps"
