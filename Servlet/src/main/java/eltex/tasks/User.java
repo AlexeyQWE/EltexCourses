@@ -12,7 +12,7 @@ public class User {
 
     public void setFio(String fio) {
         this.fio = fio;
-    }cd
+    }
 
     User(Integer id, String fio) {
 

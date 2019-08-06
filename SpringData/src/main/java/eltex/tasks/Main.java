@@ -39,7 +39,7 @@ public class Main {
     @Bean
     public CommandLineRunner demo2(UserRepository CrudRepository) {
         return (args) -> {
-            ServerSocket server = new ServerSocket(8080);
+            ServerSocket server = new ServerSocket(8081);
             while (true) {
                 Socket client = server.accept();
                 new Thread (() -> {
