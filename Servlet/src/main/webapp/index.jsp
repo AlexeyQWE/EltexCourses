@@ -21,6 +21,6 @@
             });
     </script>
     <body>
-        <div class="users">121321</div>
+        <div class="users"></div>
     </body>
 </html>
