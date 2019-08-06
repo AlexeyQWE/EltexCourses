@@ -26,7 +26,7 @@
         $(document).ready(function(){
             $.get("/get_users",
                 function(data){
-                    var str = null;
+                    var str = "";
                     for(var i = 0; i < data.length; i++) {
                         console.log(data[i]);
                         str += data[i].id + ")" + data[i].fio + "<br>";
@@ -38,7 +38,7 @@
         function UserInfo(event) {
             $.get("/get_user/" + document.getElementById("id").value,
                 function(data){
-                    var str = null  ;
+                    var str = "";
                     console.log(data);
                     str += "fio: " + data.fio + ", phone:" + data.phone + "<br>";
                     $(".user").html(str);
@@ -51,15 +51,16 @@
     <div  class="container">
         <hr >
         <div class="row">
-            <div style="border-right:2px solid black" class="col-md-6">
-                <center> Clients List </center></div>
-            <div class="col-md-6"><center>Clinets Id</center> </div>
+            <div class="users"></div>
+            <div class="col-md-6"><center> Clients List </center></div>
+             <div ><center>Clinets Id</center> </div>
         </div>
     </div>
     <div class="field">
-        <br/><input class="field" type = "text"/><br/>
+        <br/><input id="id" class="field" type = "text"/><br/>
         <button style="background: yellow; color: black;  margin-left: 290px;"  type="button" class="btn btn-danger" onclick="UserInfo()">
                 find</button>
+        <div class="user"></div>
     </div>
   </body>
 </html>
