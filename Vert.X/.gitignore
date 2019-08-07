@@ -9,7 +9,6 @@ HTTPServer/HTTPServer.iml
 HTTPClient/.gradle/
 HTTPClient/.idea/
 HTTPClient/HTTPClient.iml
-HTTPClient/build.gradle
 HTTPClient/build/
 HTTPClient/gradle/
 HTTPClient/gradlew
