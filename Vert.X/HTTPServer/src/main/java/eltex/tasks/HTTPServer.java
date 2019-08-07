@@ -2,27 +2,44 @@ package eltex.tasks;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
-import io.vertx.core.eventbus.EventBus;
-import io.vertx.core.eventbus.MessageConsumer;
-import io.vertx.core.json.JsonObject;
+import org.codehaus.jackson.map.ObjectMapper;
+import java.util.ArrayList;
 
 public class HTTPServer {
 
     public static void main(String[] args) {
 
-        Vertx vertx = Vertx.vertx(new VertxOptions().setWorkerPoolSize(40)); // количество обработчиков
-        vertx.createHttpServer().requestHandler(request -> {
-            System.out.println(request.uri()); // что было вызвано
-            request.response()
-                    .putHeader("Content-Type", "application/json")
-                    .end("{\"text\":\"Hello\""); // завершение и отправка данных
-        }).listen(8081);
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User(1, "Alexey"));
+        users.add(new User(2, "Gena"));
+        users.add(new User(3, "Eugene"));
+        users.add(new User(4, "Venc"));
 
-        EventBus eb = vertx.eventBus();
-        MessageConsumer<String> consumer = eb.consumer("news.uk.sport");
-        consumer.handler(message -> {
-            System.out.println("I have received a message: " + message.body());
-        });
-        eb.send("news.uk.sport", "Hello");
+        ObjectMapper mapper = new ObjectMapper();
+        Vertx vertx = Vertx.vertx(new VertxOptions().setWorkerPoolSize(40));
+        vertx.createHttpServer().requestHandler(request -> {
+            System.out.println(request.uri()); 
+            String[] input = request.uri().split("/");
+            if (input[1].equals("get_users")){
+                try {
+                    String output = mapper.writeValueAsString(users);
+                    request.response()
+                            .putHeader("Content-Type", "application/json")
+                            .end(output); 
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else if (input[1].equals("get_user")){
+                try {
+                    Integer id = Integer.parseInt(input[2]);
+                    String output = mapper.writeValueAsString(users.get(id));
+                    request.response()
+                            .putHeader("Content-Type", "application/json")
+                            .end(output); 
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).listen(8081); 
     }
 }

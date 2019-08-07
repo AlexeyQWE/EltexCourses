@@ -1,6 +1,6 @@
 apply plugin: "java"
 apply plugin: "application"
-mainClassName  = "eltex.tasks.Main"
+mainClassName  = "eltex.tasks.HTTPClient"
 
 repositories {
     mavenCentral()
@@ -11,5 +11,9 @@ dependencies {
     compile 'io.vertx:vertx-core:3.8.0'
     compile 'io.vertx:vertx-lang-groovy:3.8.0'
     compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.+'
+}
+
+run {
+    standardInput = System.in
 }
 
