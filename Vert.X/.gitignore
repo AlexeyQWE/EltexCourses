@@ -1,0 +1,17 @@
+HTTPServer/.gradle/
+HTTPServer/build/
+HTTPServer/.idea/
+HTTPServer/gradle/
+HTTPServer/gradlew
+HTTPServer/gradlew.bat
+HTTPServer/HTTPServer.iml
+
+HTTPClient/.gradle/
+HTTPClient/.idea/
+HTTPClient/HTTPClient.iml
+HTTPClient/build.gradle
+HTTPClient/build/
+HTTPClient/gradle/
+HTTPClient/gradlew
+HTTPClient/gradlew.bat
+
