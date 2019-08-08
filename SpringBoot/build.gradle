@@ -1,0 +1,30 @@
+apply plugin: "java"
+apply plugin: "application"
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
+	}
+}
+repositories {
+	mavenCentral()
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web")
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compileOnly 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
+	compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.+'
+}
+
+run {
+	standardInput = System.in
+}
