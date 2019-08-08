@@ -32,7 +32,7 @@ public class HTTPServer {
             }else if (input[1].equals("get_user")){
                 try {
                     Integer id = Integer.parseInt(input[2]);
-                    String output = mapper.writeValueAsString(users.get(id));
+                    String output = mapper.writeValueAsString(users.get(id - 1));
                     request.response()
                             .putHeader("Content-Type", "application/json")
                             .end(output); 
