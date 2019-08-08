@@ -30,7 +30,7 @@ public class HTTPClient {
         String field = scan.nextLine();
 
         client.requestAbs(HttpMethod.GET, "https://api.vk.com/method/users.get?user_ids=" + id + 
-            "&fields=" + field + "&access_token=\"acces_token\"&v=5.101",
+            "&fields=" + field + "&access_token=***&v=5.101",
             result -> {
                 System.out.println(result.statusCode());
                 result.bodyHandler(body -> {
