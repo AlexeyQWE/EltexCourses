@@ -19,25 +19,18 @@ public class UserController {
     private ObjectMapper mapper = new ObjectMapper();
     private ArrayList<User> users = new ArrayList<User>();
 
-    @RequestMapping("/clear")
-    /**
-     * Метод для сопоставления с точкой входа <b>/clear</b>
-     * @see User#User()
-     */
-    public void clear() {
-        users.clear();
-    }
-
     @RequestMapping("/create")
     /**
      * Метод для сопоставления с точкой входа <b>/create</b>
      * @see User#User()
      */
-    public void create() {
+    public String create() {
         users.add(new User(1, "Alexey", "900"));
         users.add(new User(2, "Gena", "800"));
         users.add(new User(3, "Eugene", "700"));
         users.add(new User(4, "Venc", "600"));
+
+        return "Users has create";
     }
 
     @RequestMapping("/get_users")
@@ -46,7 +39,7 @@ public class UserController {
      * @return Строка формата JSON
      * @see User#User()
      */
-    public String getUser() throws IOException {
+    public String getUsers() throws IOException {
         if (!users.isEmpty())
             return mapper.writeValueAsString(users);
         else
@@ -55,14 +48,25 @@ public class UserController {
 
     @RequestMapping("/get_user/{id}")
     /**
-     * Метод для сопоставления с точкой входа <b>/get_user/id</b>
+     * Метод для сопоставления с точкой входа <b>/get_user/{id}</b>
      * @return Строка формата JSON
      * @see User#User()
      */
-    public String getUserWithID(@PathVariable("id") Integer id) throws IOException {
+    public String getUser(@PathVariable("id") Integer id) throws IOException {
         if (!users.isEmpty())
             return mapper.writeValueAsString(users.get(id - 1));
         else
             return "Current user not found";
+    }
+
+    @RequestMapping("/clear")
+    /**
+     * Метод для сопоставления с точкой входа <b>/clear</b>
+     * @see User#User()
+     */
+    public String clear() {
+
+        users.clear();
+        return "Users has removed from list";
     }
 }
