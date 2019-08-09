@@ -43,7 +43,18 @@ public class ControllerTest {
 	}
 
 	@Test
+	public  void clear() throws Exception {
+
+		String expected = "Users has removed from list";
+
+		this.mockMvc.perform(get("http://localhost:8090/clear")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().string(containsString(expected)));
+	}
+
+	@Test
 	public void getUsers() throws Exception {
+
+		create();
 
 		users.add(new User(1, "Alexey", "900"));
 		users.add(new User(2, "Gena", "800"));
@@ -64,6 +75,8 @@ public class ControllerTest {
 
 	@Test
 	public void getUser() throws Exception {
+
+		create();
 
 		ObjectMapper mapper = new ObjectMapper();
 		String expected = null;
