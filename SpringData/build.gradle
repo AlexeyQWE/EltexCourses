@@ -1,15 +1,27 @@
-apply plugin: "java"
-apply plugin: "application"
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-mainClassName  = "eltex.tasks.Main"
+import com.github.spotbugs.SpotBugsTask
 
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE"
+    }
+}
+
+plugins {
+    id "java"
+    id "application"
+    id "org.springframework.boot" version "2.1.6.RELEASE"
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id "com.github.spotbugs" version "2.0.0"
+}
+mainClassName  = "eltex.tasks.Main"
+
+tasks.withType(SpotBugsTask) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
     }
 }
 
@@ -21,16 +33,9 @@ dependencies {
     compile 'mysql:mysql-connector-java:8.0.17'
     compile "org.springframework.boot:spring-boot-starter-data-jpa"
     compile "org.springframework.boot:spring-boot-starter-data-mongodb"
-}
-
-dependencies {
+    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.+'
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
-}
-
-dependencies {
-    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.+'
-    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
 run {
