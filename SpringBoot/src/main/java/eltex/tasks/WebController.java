@@ -19,7 +19,12 @@ public class WebController {
      * @see User#User()
      */
     public String index(Model model) {
-        model.addAttribute("name", "Alexey");
+        model.addAttribute("name", "All users");
+        model.addAttribute("user1", (new User(1, "Alexey", "900")));
+        model.addAttribute("user2", (new User(2, "Gena", "800")));
+        model.addAttribute("user3", (new User(3, "Eugene", "700")));
+        model.addAttribute("user4", (new User(4, "Venc", "600")));
+
         return "index";
     }
 }

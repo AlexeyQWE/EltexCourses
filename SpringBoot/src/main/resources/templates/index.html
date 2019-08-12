@@ -1,6 +1,10 @@
 <!DOCTYPE>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<p th:text="'Hello, ' + ${name} + '!'"></p>
+<p th:text="${name}"></p>
+<p th:text="${user1.getFio()} "></p>
+<p th:text=" ${user2.getFio()} "></p>
+<p th:text=" ${user3.getFio()}"></p>
+<p th:text="${user4.getFio()} "></p>
 </body>
 </html>
