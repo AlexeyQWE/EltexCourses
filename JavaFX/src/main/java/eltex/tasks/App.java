@@ -1,4 +1,4 @@
-package eltex.taks;
+package eltex.tasks;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
