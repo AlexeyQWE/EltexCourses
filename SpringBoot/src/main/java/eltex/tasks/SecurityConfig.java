@@ -23,8 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 // распределение прав
         http.authorizeRequests()
-                .antMatchers("/hello").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/bye").access("hasRole('ROLE_USER')")
+                .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/create").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin()
                 .defaultSuccessUrl("/");

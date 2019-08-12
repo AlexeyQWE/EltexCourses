@@ -43,11 +43,11 @@ public class ControllerTest {
 	}
 
 	@Test
-	public  void clear() throws Exception {
+	public void admin() throws Exception {
 
 		String expected = "Users has removed from list";
 
-		this.mockMvc.perform(get("http://localhost:8090/clear")).andDo(print()).andExpect(status().isOk())
+		this.mockMvc.perform(get("http://localhost:8090/admin")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().string(containsString(expected)));
 	}
 

@@ -4,7 +4,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,6 +20,7 @@ public class UserController {
 
     @RequestMapping("/create")
     /**
+     * добавление пользователей
      * Метод для сопоставления с точкой входа <b>/create</b>
      * @see User#User()
      */
@@ -35,6 +35,7 @@ public class UserController {
 
     @RequestMapping("/get_users")
     /**
+     * вывод всех пользователей
      * Метод для сопоставления с точкой входа <b>/get_users</b>
      * @return Строка формата JSON
      * @see User#User()
@@ -48,6 +49,7 @@ public class UserController {
 
     @RequestMapping("/get_user/{id}")
     /**
+     * вывод пользователя по id
      * Метод для сопоставления с точкой входа <b>/get_user/{id}</b>
      * @return Строка формата JSON
      * @see User#User()
@@ -59,12 +61,13 @@ public class UserController {
             return "Current user not found";
     }
 
-    @RequestMapping("/clear")
+    @RequestMapping("/admin")
     /**
-     * Метод для сопоставления с точкой входа <b>/clear</b>
+     * удаление пользователей
+     * Метод для сопоставления с точкой входа <b>/admin</b>
      * @see User#User()
      */
-    public String clear() {
+    public String admin() {
 
         users.clear();
         return "Users has removed from list";
