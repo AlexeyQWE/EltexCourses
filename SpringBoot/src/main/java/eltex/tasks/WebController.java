@@ -14,17 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WebController {
     @RequestMapping("/")
     /**
-     * Загрузка стартовой страницы Hello
+     * Загрузка стартовой страницы Users List
      * Метод для сопоставления с точкой входа <b>/</b>
      * @see User#User()
      */
-    public String index(Model model) {
-        model.addAttribute("name", "All users");
+    public String index_default(Model model) {
+        model.addAttribute("name", "Users List");
         model.addAttribute("user1", (new User(1, "Alexey", "900")));
         model.addAttribute("user2", (new User(2, "Gena", "800")));
         model.addAttribute("user3", (new User(3, "Eugene", "700")));
         model.addAttribute("user4", (new User(4, "Venc", "600")));
 
-        return "index";
+        return "index_default";
+    }
+
+    @RequestMapping("/admin")
+    /**
+     * Загрузка стартовой страницы Admin Page
+     * Метод для сопоставления с точкой входа <b>/admin</b>
+     * @see User#User()
+     */
+    public String index_admin(Model model) {
+        model.addAttribute("name", "Admin Page");
+        model.addAttribute("user1", (new User(1, "Alexey", "900")));
+        model.addAttribute("user2", (new User(2, "Gena", "800")));
+        model.addAttribute("user3", (new User(3, "Eugene", "700")));
+        model.addAttribute("user4", (new User(4, "Venc", "600")));
+
+        return "index_admin";
     }
 }

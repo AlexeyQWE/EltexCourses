@@ -1,0 +1,57 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <script src="http://code.jquery.com/jquery-3.4.1.js"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    </head>
+    <script type="text/javascript">
+            function remove(id) {
+                $.get("/delete_user/" + id,
+                    function (data) {
+                        console.log(data);
+                    }
+                );
+                $.get("/get_users",
+                function (data) {
+                    console.log(data);
+                    $("html").html(data);
+                }
+            );
+          }
+     </script>
+    <script type="text/javascript">
+         function create() {
+                $.get("/create",
+                    function (data) {
+                        console.log(data);
+                    }
+                );
+                $.get("/get_users",
+                function (data) {
+                    console.log(data);
+                    $("html").html(data);
+                }
+            );
+          }
+    </script>
+    <script type="text/javascript">
+        function remove_all() {
+                $.get("/clear",
+                    function (data) {
+                        console.log(data);
+                    }
+                );
+          }
+    </script>
+    <br>
+        <b>
+             <p align="center" th:text="${name}"> </p>
+        </b>
+        <button th:text="Add + ' ' + users + ' ' + to + ' ' + Users + ' ' + List"  th:onclick = "create()"></button><br><br>
+        <button th:text="Remove + ' ' +  ${user1.getFio()} " th:onclick="'remove(' + ${user1.getId()} + ')'"></button><br><br>
+        <button th:text="Remove + ' ' +  ${user2.getFio()}"  th:onclick="'remove(' + ${user2.getId()} + ')'"></button><br><br>
+        <button th:text="Remove + ' ' +  ${user3.getFio()}"  th:onclick="'remove(' + ${user3.getId()} + ')'"></button><br><br>
+        <button th:text="Remove + ' ' +  ${user4.getFio()}"  th:onclick="'remove(' + ${user4.getId()} + ')'"></button><br><br>
+        <button th:text="Remove + ' ' + users + ' ' + from + ' ' + Users + ' ' + List"  th:onclick = "remove_all()"></button>
+    </body>
+</html>

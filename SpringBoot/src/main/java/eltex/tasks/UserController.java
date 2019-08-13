@@ -33,6 +33,18 @@ public class UserController {
         return "Users has create";
     }
 
+    @RequestMapping("/clear")
+    /**
+     * удаление пользователей
+     * Метод для сопоставления с точкой входа <b>/admin</b>
+     * @see User#User()
+     */
+    public String clear() {
+
+        users.clear();
+        return "Users has removed from list";
+    }
+
     @RequestMapping("/get_users")
     /**
      * вывод всех пользователей
@@ -55,21 +67,29 @@ public class UserController {
      * @see User#User()
      */
     public String getUser(@PathVariable("id") Integer id) throws IOException {
-        if (!users.isEmpty())
-            return mapper.writeValueAsString(users.get(id - 1));
+        String output;
+        if (!users.isEmpty()) {
+            output = mapper.writeValueAsString(users.get(id - 1));
+            output = (output == null) ?  "Current user not found": output;
+            return output;
+        }
         else
             return "Current user not found";
     }
 
-    @RequestMapping("/admin")
+    @RequestMapping("/delete_user/{id}")
     /**
-     * удаление пользователей
-     * Метод для сопоставления с точкой входа <b>/admin</b>
+     * Удаление пользователя по id
+     * Метод для сопоставления с точкой входа <b>//delete_user/{id}</b>
+     * @return Строка формата String
      * @see User#User()
      */
-    public String admin() {
-
-        users.clear();
-        return "Users has removed from list";
+    public String removeUser(@PathVariable("id") Integer id) throws IOException {
+        if (!users.isEmpty()) {
+            users.set(id - 1, null);
+            return "Current user has removed";
+        }
+        else
+            return "Current user not found";
     }
 }

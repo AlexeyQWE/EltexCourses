@@ -13,7 +13,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-// пользователи через оперативную память
         auth.inMemoryAuthentication()
                 .withUser("user").password("{noop}user").roles("USER")
                 .and()
@@ -21,10 +20,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-// распределение прав
         http.authorizeRequests()
                 .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/create").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/clear").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/delete_user/{id}").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin()
                 .defaultSuccessUrl("/");
