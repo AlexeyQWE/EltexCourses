@@ -1,6 +1,6 @@
 package eltex.tasks;
 
-import lombok.*;;
+import lombok.*;
 
 /**
  * Класс представления пользователя
