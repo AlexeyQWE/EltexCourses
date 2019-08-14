@@ -1,0 +1,19 @@
+<?language javascript?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<GridPane fx:controller="eltex.tasks.Controller" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <fx:script>
+        function click() {
+            $.get("/get_users",
+                function (data) {
+                    btn.setText(data);
+                }
+             );
+        }
+    </fx:script>
+    <Button text="Кнопка!" fx:id="btn" onAction="click()"/>
+</GridPane>

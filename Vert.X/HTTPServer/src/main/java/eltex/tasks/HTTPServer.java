@@ -10,10 +10,10 @@ public class HTTPServer {
     public static void main(String[] args) {
 
         ArrayList<User> users = new ArrayList<User>();
-        users.add(new User(1, "Alexey"));
-        users.add(new User(2, "Gena"));
-        users.add(new User(3, "Eugene"));
-        users.add(new User(4, "Venc"));
+        users.add(new User(1, "Alexey", "900"));
+        users.add(new User(2, "Gena", "800"));
+        users.add(new User(3, "Eugene", "700"));
+        users.add(new User(4, "Venc", "600"));
 
         ObjectMapper mapper = new ObjectMapper();
         Vertx vertx = Vertx.vertx(new VertxOptions().setWorkerPoolSize(40));
