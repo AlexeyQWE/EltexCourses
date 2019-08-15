@@ -16,7 +16,7 @@
             });
         </script>
     <script type="text/javascript">
-         function show() {
+         function ShowAll() {
                 $.get("http://localhost:8081/get_users",
                 function (data) {
                     var str = "";
@@ -24,11 +24,26 @@
                         console.log(data[i]);
                         str += data[i].id + ")" + data[i].fio + "<br>";
                     }
-                    $("html").html(str);
+                    $(".users").html(str);
                 }
             );
         }
     </script>
-    <button style="background: yellow; color: black;  margin-left: 290px;"  type="button" class="btn btn-danger" onclick="show()">
-        Show users</button>
+    <script type="text/javascript">
+         function ShowWithId() {
+            $.get("http://localhost:8081/get_user/" + document.getElementById("id").value,
+                function(data){
+                    var str = "";
+                    console.log(data);
+                    str += "fio: " + data.fio + ", phone:" + data.phone + "<br>";
+                    $(".user").html(str);
+                }
+            );
+        }
+    </script>
+    <div class="users"></div>
+    <button style="background: yellow; color: black;"  type="button" class="btn btn-danger" onclick="ShowAll()">Show users</button>
+    <br><br/><input id="id" type = "text"/><br/>
+    <button style="background: yellow; color: black;"  type="button" class="btn btn-danger" onclick="ShowWithId()">Find User by id</button>
+    <div class="user"></div>
 </html>

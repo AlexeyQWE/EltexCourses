@@ -65,7 +65,7 @@ public class Main {
                             ObjectMapper mapper = new ObjectMapper();
                             User u = CrudRepository.findById(id).get();
                             output = mapper.writeValueAsString(u);
-                            output = "HTTP/1.1 200 OK\nContent-Type:application/json\n\n" + output;
+                            output = "HTTP/1.1 200 OK\nAccess-Control-Allow-Origin: http://localhost:3000\nContent-Type:application/json\n\n" + output;
                         }
                         else if (tokens[1].equals("index.html") && tokens.length == 2) {
                             String path = "src/main/resources/index.html";

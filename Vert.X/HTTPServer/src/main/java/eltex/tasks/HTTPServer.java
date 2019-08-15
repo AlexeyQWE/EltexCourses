@@ -25,6 +25,7 @@ public class HTTPServer {
                     String output = mapper.writeValueAsString(users);
                     request.response()
                             .putHeader("Content-Type", "application/json")
+                            .putHeader("Access-Control-Allow-Origin", "http://localhost:3001")
                             .end(output); 
                 }catch (Exception e) {
                     e.printStackTrace();
@@ -35,6 +36,7 @@ public class HTTPServer {
                     String output = mapper.writeValueAsString(users.get(id - 1));
                     request.response()
                             .putHeader("Content-Type", "application/json")
+                            .putHeader("Access-Control-Allow-Origin", "http://localhost:3001")
                             .end(output); 
                 }catch (Exception e) {
                     e.printStackTrace();

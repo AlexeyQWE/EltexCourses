@@ -10,6 +10,6 @@ http.createServer(function(req, resp){
         resp.end(data);
     });
     return;
-}).listen(3000, function(){
+}).listen(3001, function(){
     console.log("Node.JS Server running");
 });
