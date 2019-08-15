@@ -1,0 +1,34 @@
+<!DOCTYPE>
+    <head>
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+        <script src = "node_modules/systemjs/dist/systemjs.js">
+        </script>
+        <script>
+            System.import("node_modules/jquery/dist/jquery.main.js").
+            then (function(data){
+                $(document).ready();
+             }, function(error){
+                console.log(error);
+            });
+        </script>
+    <script type="text/javascript">
+         function show() {
+                $.get("http://localhost:8081/get_users",
+                function (data) {
+                    var str = "";
+                    for(var i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                        str += data[i].id + ")" + data[i].fio + "<br>";
+                    }
+                    $("html").html(str);
+                }
+            );
+        }
+    </script>
+    <button style="background: yellow; color: black;  margin-left: 290px;"  type="button" class="btn btn-danger" onclick="show()">
+        Show users</button>
+</html>
