@@ -47,6 +47,7 @@ public class Main {
                         InputStream inStream = client.getInputStream();
                         Scanner in = new Scanner(inStream);
                         String client_request = in.nextLine();
+                        System.out.println(client_request);
                         String [] arg = client_request.split(" ");
                         String [] tokens = arg[1].split("/");
                         String output = null;
@@ -56,7 +57,7 @@ public class Main {
                             ArrayList<User> users = new ArrayList<>();
                             CrudRepository.findAll().forEach(users::add);
                             output = mapper.writeValueAsString(users);
-                            output = "HTTP/1.1 200 OK\nContent-Type:application/json\n\n" + output;
+                            output = "HTTP/1.1 200 OK\nAccess-Control-Allow-Origin: http://localhost:3000\nContent-Type:application/json\n\n" + output;
                         }
 
                         else if (tokens[1].equals("get_user") && tokens.length > 2) {

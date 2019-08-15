@@ -3,7 +3,7 @@ package eltex.tasks;
 import lombok.*;;
 import javax.persistence.*;
 
-@Entity
+@NoArgsConstructor@Entity
 public class User {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,8 +11,6 @@ public class User {
     @Getter @Setter private Integer id;
     @Getter @Setter private String fio;
     @Getter @Setter private String phone;
-
-    User () {}
 
     User(Integer id, String fio, String phone) {
         this.id = id;
