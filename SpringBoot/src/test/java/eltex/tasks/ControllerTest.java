@@ -43,15 +43,6 @@ public class ControllerTest {
 	}
 
 	@Test
-	public void clear() throws Exception {
-
-		String expected = "Users has removed from list";
-
-		this.mockMvc.perform(get("http://localhost:8090/clear")).andDo(print()).andExpect(status().isOk())
-				.andExpect(content().string(containsString(expected)));
-	}
-
-	@Test
 	public void getUsers() throws Exception {
 
 		create();
@@ -91,25 +82,4 @@ public class ControllerTest {
 		.andExpect(content().string(containsString(expected)));
 	}
 
-	@Test
-	public void removeUser() throws Exception {
-
-		create();
-		String expected = null;
-
-		users.add(new User(1, "Alexey", "900"));
-		users.add(new User(2, "Gena", "800"));
-		users.add(new User(3, "Eugene", "700"));
-		users.add(new User(4, "Venc", "600"));
-
-		if (!users.isEmpty()) {
-			users.set(0, null);
-			expected =  "Current user has removed";
-		}
-		else
-			expected =  "Current user not found";
-
-		this.mockMvc.perform(get("http://localhost:8090/delete_user/1")).andDo(print()).andExpect(status().isOk())
-				.andExpect(content().string(containsString(expected)));
-	}
 }
