@@ -1,0 +1,8 @@
+{"compileOption" : {
+    "target" : "es5",
+    "outDir" : "js",
+    "removeComment" : true,
+    "outFile" : "main.js"
+    },
+    "files" : ["ts/app.ts"]
+}

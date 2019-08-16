@@ -7,6 +7,8 @@
     </head>
         <script src = "node_modules/systemjs/dist/systemjs.js">
         </script>
+        <script src = "ts/app.js">
+        </script>
         <script>
             System.import("node_modules/jquery/dist/jquery.main.js").
             then (function(data){
@@ -46,4 +48,5 @@
     <br><br/><input id="id" type = "text"/><br/>
     <button style="background: yellow; color: black;"  type="button" class="btn btn-danger" onclick="ShowWithId()">Find User by id</button>
     <div class="user"></div>
+    <div id = "test"></div>
 </html>
